@@ -1,5 +1,16 @@
 <!DOCTYPE html 5.0>
 <head>
+<style>
+table {
+    width:70%; 
+    margin-left:20%; 
+    margin-right:20%;
+  }
+table, th, td {
+    border-bottom: 1px solid black;
+	width: 60%;
+}
+</style>
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 <title> data </title>
 </head>
@@ -14,18 +25,15 @@ $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 
 $word=array(
-	"Id",	
 	"Name",
 	"Email",
-	"PhoneNumber",
-	"Sex",
-	"Resume",);
+	"PhoneNumber",);
 
 $i=0;
 $arr=array();
-for($i=0;$i<6;$i++)
+for($i=0;$i<3;$i++)
 {
-	$sql = "SELECT $word[$i] FROM candidates ORDER BY Id";
+	$sql = "SELECT $word[$i] FROM candidates ORDER BY Name";
 	//$sqlphone .= "SELECT id FROM candidates";
 	
 	$ind=0;
@@ -51,13 +59,17 @@ for($i=0;$i<6;$i++)
 }
 $j=0;
 "</br>";
-echo "<table border='1px solid black'>";
-for($i=0;$i<6;$i++)
+echo "<table>
+<th>Name</th>
+<th>Email</th>
+<th>Phone Number</th>";
+for($j=0;$j<$ind;$j++)
 {
 	echo "<tr>";
-	for($j=0;$j<$ind;$j++)
+	for($i=0;$i<3;$i++)
 	{
 		echo "<td>";
+		echo "<center>";
 		printf("%s</br>",$arr[$i][$j]);
 		echo "</td>";
 	}
