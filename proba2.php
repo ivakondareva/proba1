@@ -18,8 +18,29 @@ echo "<form action='proba2.php' method='post'>
 	</br>
 	<input type='text' name='InputPhone'/>
 	</br>
-	<input type='submit' name='Save' value='SaveMe' />
 	
+	<input type='radio' name='Sex' value='1'/>Мъж
+	<input type='radio' name='Sex' value='0'/>Жена
+	</br>
+	<input type='text' name='Day'/>
+	<select name='Month'>
+  		<option value='01'>Януари</option>
+  		<option value='02'>Февруари</option>
+  		<option value='03'>Март</option>
+  		<option value='04'>Април</option>
+  		<option value='05'>Май</option>
+  		<option value='06'>Юни</option>
+  		<option value='07'>Юли</option>
+  		<option value='08'>Август</option>
+  		<option value='09'>Септември</option>
+  		<option value='10'>Октомври</option>
+ 		<option value='11'>Ноември</option>
+  		<option value='12'>Декември</option>
+	</select> 
+	<input type='text' name='Year'/>
+	</br>
+	<input type='submit' name='Save' value='SaveMe' />
+
 </form>";
 
 if(isset($_POST['InputName']))
@@ -27,6 +48,11 @@ if(isset($_POST['InputName']))
 	$InputName = $_POST['InputName'];
 	$InputEmail = $_POST['InputEmail'];
 	$InputPhone = $_POST['InputPhone'];
+	$InputSex = $_POST['Sex'];
+	$InputDay = $_POST['Day'];
+	$InputMonth = $_POST['Month'];
+	$InputYear= $_POST['Year'];
+
 }
 if(isset($_POST['Save']))
     {
@@ -37,18 +63,27 @@ if(isset($_POST['Save']))
     	$NameTaken=$GLOBALS['InputName'];
     	$EmailTaken=$GLOBALS['InputEmail'];
     	$PhoneTaken=$GLOBALS['InputPhone'];
+    	$SexTaken=$GLOBALS['InputSex'];
+    	$DayTaken=(string)$GLOBALS['InputDay'];
+    	$MonthTaken=(string)$GLOBALS['InputMonth'];
+    	$YearTaken=(string)$GLOBALS['InputYear'];
+    	$tire='-';
+    	$BirthTaken=$YearTaken.$tire.$MonthTaken.$tire.$DayTaken;
+    	$BirthTaken=strtotime($BirthTaken);
+    	$BirthTaken=date('Y-m-d',$BirthTaken);
+    	//+'-'+(string)$GLOBALS['InputMonth']+'-'+(string)$GLOBALS['InputYear'];
     	/*echo $NameTaken;
     	global $vare;
     	echo $vare;
     	$vare++;
     	echo $vare;
     	*/
-    		$sql = "INSERT INTO candidates (Name, PhoneNumber, Email, DateOfBirth, Resume, Position)
-			VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken', '1987-05-02', 'alaaa', 'balaa')";
+    		$sql = "INSERT INTO candidates (Name, PhoneNumber, Email, Sex , DateOfBirth, Resume, Position)
+			VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', 'alaaa', 'balaa')";
 			if($GLOBALS['conn'] -> query($sql)==TRUE)
 			{
 
-    			header("refresh:0;");
+    			//header("refresh:0;");
     			//GLOBALS['var']=1;
     			/*$_POST = array();
     			$GLOBALS['InputName']="--";
