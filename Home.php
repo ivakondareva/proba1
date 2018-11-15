@@ -7,10 +7,11 @@
 <style>
 li{
     float:left;
+    margin: 10px;
 }
 li a {
     display:block;
-    padding: 14px 16px;
+    margin: 14px 16px;
 }
 </style>
 <body>

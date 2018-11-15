@@ -12,8 +12,14 @@ $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 echo "<form action='proba2.php' method='post'>
-	<input type='submit' name='Save' value='SaveMe' />
 	<input type='text' name='InputName'/>
+	</br>
+	<input type='text' name='InputEmail'/>
+	</br>
+	<input type='text' name='InputPhone'/>
+	</br>
+	<input type='submit' name='Save' value='SaveMe' />
+	
 </form>";
 
 if(isset($_POST['InputName']))
