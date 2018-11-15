@@ -24,7 +24,9 @@ echo "<form action='proba2.php' method='post'>
 
 if(isset($_POST['InputName']))
 {
-	$InputName = $_POST['InputName']; 
+	$InputName = $_POST['InputName'];
+	$InputEmail = $_POST['InputEmail'];
+	$InputPhone = $_POST['InputPhone'];
 }
 if(isset($_POST['Save']))
     {
@@ -33,6 +35,8 @@ if(isset($_POST['Save']))
     function func()
     {
     	$NameTaken=$GLOBALS['InputName'];
+    	$EmailTaken=$GLOBALS['InputEmail'];
+    	$PhoneTaken=$GLOBALS['InputPhone'];
     	/*echo $NameTaken;
     	global $vare;
     	echo $vare;
@@ -40,9 +44,11 @@ if(isset($_POST['Save']))
     	echo $vare;
     	*/
     		$sql = "INSERT INTO candidates (Name, PhoneNumber, Email, DateOfBirth, Resume, Position)
-			VALUES ('$NameTaken', '01387410', 'alabala', '1987-05-02', 'alaaa', 'balaa')";
+			VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken', '1987-05-02', 'alaaa', 'balaa')";
 			if($GLOBALS['conn'] -> query($sql)==TRUE)
 			{
+
+    			header("refresh:0;");
     			//GLOBALS['var']=1;
     			/*$_POST = array();
     			$GLOBALS['InputName']="--";
@@ -50,12 +56,7 @@ if(isset($_POST['Save']))
     			*/
     			/*$sql1 = "UPDATE flags SET lamp='1' WHERE id=1";
 
-				if ($conn->query($sql) === TRUE) {
-   				 echo "Record updated successfully";
-				} else {
-    			echo "Error updating record: " . $conn->error;
-				}
-				Trqbva da se dobavi zapis v lamp
+    			Trqbva da se dobavi zapis v lamp
 				Trqbva da se updeitne flag = 1 i ako e 1 sled refresha da izpishe NEW Record
 				*/
 
