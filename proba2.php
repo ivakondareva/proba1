@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
+
 <title> data </title>
 </head>
 <body>
@@ -11,18 +12,18 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
-echo "<form action='proba2.php' method='post'>
-	<input type='text' name='InputName'/>
+echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
+	<input type='text' name='InputName' placeholder='Име'/>
 	</br>
-	<input type='text' name='InputEmail'/>
+	<input type='text' name='InputEmail' placeholder='Имейл'/>
 	</br>
-	<input type='text' name='InputPhone'/>
+	<input type='text' name='InputPhone' placeholder='Телефон'/>
 	</br>
 	
 	<input type='radio' name='Sex' value='1'/>Мъж
 	<input type='radio' name='Sex' value='0'/>Жена
 	</br>
-	<input type='text' name='Day'/>
+	<input type='text' name='Day' placeholder='Ден'/>
 	<select name='Month'>
   		<option value='01'>Януари</option>
   		<option value='02'>Февруари</option>
@@ -37,21 +38,27 @@ echo "<form action='proba2.php' method='post'>
  		<option value='11'>Ноември</option>
   		<option value='12'>Декември</option>
 	</select> 
-	<input type='text' name='Year'/>
+	<input type='text' name='Year' placeholder='Година'/>
 	</br>
-	<textarea name='Resume' >
-	</textarea>
+	<textarea name='Resume' placeholder='Резюме'></textarea>
 	</br>
-	<input type='text' name='Position'/>
-	</br>
+	<input type='text' name='Position' placeholder='Позиция'/>
+    </br>
+    <input type='file' name='image' />
+    </br>
 	<input type='submit' name='Save' value='SaveMe' />
 </form>";
 
- echo 
-    "<form action='' method='POST' enctype='multipart/form-data'>
-    <input type='file' name='image' />
-    <input type='submit'/>
- </form>";
+$images = array("Ivka.docx");
+
+// Loop through array to create image gallery
+foreach($images as $image){
+	echo '<div class="img-box">';
+		echo '<img src="Files/' . $image . '" width="300" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">';
+		echo '<p><a href="download.php?file=' . $image . '">Download</a></p>';
+	echo '</div>';
+}
+
  if(isset($_FILES['image'])){
         $errors= array();
         $file_name = $_FILES['image']['name'];
@@ -60,18 +67,13 @@ echo "<form action='proba2.php' method='post'>
         $file_type=$_FILES['image']['type'];
         $tmp = explode('.',$_FILES['image']['name']);
         $file_ext=strtolower(end($tmp));
-/*$expensions= array("jpeg","jpg","png");
-        
-        if(in_array($file_ext,$expensions)=== false){
-           $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-        }*/
         
         if($file_size > 2097152){
-           $errors[]='File size must be excately 2 MB';
+           $errors[]='File size must be excatly 2 MB';
         }
         
         if(empty($errors)==true){
-           move_uploaded_file($file_tmp,"Files/".$file_name);
+           move_uploaded_file($file_tmp,"Files/".$_POST['InputName'].".".$file_ext);
            echo "Success";
         }else{
            print_r($errors);
@@ -113,13 +115,7 @@ if(isset($_POST['Save']))
     	$ResumeTaken=$GLOBALS['InputResume'];
 
     	$PositionTaken=$GLOBALS['InputPosition'];
-    	//+'-'+(string)$GLOBALS['InputMonth']+'-'+(string)$GLOBALS['InputYear'];
-    	/*echo $NameTaken;
-    	global $vare;
-    	echo $vare;
-    	$vare++;
-    	echo $vare;
-    	*/
+    	
     		$sql = "INSERT INTO candidates (Name, PhoneNumber, Email, Sex , DateOfBirth, Resume, Position)
 			VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken')";
 			if($GLOBALS['conn'] -> query($sql)==TRUE)
@@ -144,16 +140,6 @@ if(isset($_POST['Save']))
     			echo "NE" .$sql."<br>".$conn->error;
 			} 
     }
-/*$sql = "INSERT INTO candidates (Name, PhoneNumber, Email, DateOfBirth, Resume, Position)
-VALUES ('John Dimitrov', '01387410', 'alabala', '1987-05-02', 'alaaa', 'balaa')";
-if($conn -> query($sql)==TRUE)
-{
-    echo "NEW RECORD";
-}
-else 
-{
-    echo "NE" .$sql."<br>".$conn->error;
-}*/
 mysqli_close($conn);
 ?>
 </body>
