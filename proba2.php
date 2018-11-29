@@ -2,10 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
+<link rel="import" href="nav.html">
 
 <title> data </title>
 </head>
 <body>
+<div w3-include-html="nav.html"></div> 
+</br>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -49,7 +52,7 @@ echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
 	<input type='submit' name='Save' value='SaveMe' />
 </form>";
 
-$images = array("Ivka.docx");
+$images = array("Frake.docx");
 
 // Loop through array to create image gallery
 foreach($images as $image){
@@ -142,5 +145,6 @@ if(isset($_POST['Save']))
     }
 mysqli_close($conn);
 ?>
+
 </body>
 </html>
