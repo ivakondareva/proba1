@@ -11,47 +11,28 @@ table, th, td {
     border-bottom: 1px solid black;
 	width: 60%;
 }
-
 </style>
 -->
-<link rel="stylesheet" type="text/css" href="Styling/main/css/style.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/spinners.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/animate.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/colors/default-dark.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/flag-icon-css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/font-awesome/css/fontawesome-all.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/linea-icons/linea.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/material-design-iconic-font/css/materialdesignicons.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/simple-line-icons/css/simple-line-icons.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/themify-icons/themify-icons.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/weather-icons/css/weather-icons.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/bootstrap-switch.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/breadcrumb-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/card-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/chat-app-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/contact-app-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard1.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard2.css">
+<link rel="import" href="nav.html">
 
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 <title> data </title>
 </head>
 <body>
+<div w3-include-html="nav.html"></div> 
+</br>
 <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
-
 // Create connection
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
-
 $word=array(
 	"Id",
 	"Name",
 	"Email",
 	"PhoneNumber",);
-
 $i=0;
 $arr=array();
 for($i=0;$i<4;$i++)
@@ -104,7 +85,6 @@ for($j=0;$j<$ind;$j++)
 	echo "</tr>";
 }
 echo "</table>";
-
 mysqli_close($conn);
 ?>
 </body>
