@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard1.css">
 <link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard2.css">
 -->
-<link rel="import" href="nav.html">
+<link rel="import" href="nav.php">
 <style>
 * {box-sizing: border-box}
 /* Add padding to containers */
@@ -71,8 +71,9 @@ hr {
 </style>
 <body>
 <p> <a href="http://localhost/ORAK/register/index.php?logout='1'" style="color: red;">logout</a> </p> 
-<div w3-include-html="nav.html"></div> 
+<div w3-include-html="nav.php"></div> 
 </br>
+<!--
 <form action="action_page.php">
   <div class="container">
     <h2>Log In</h2>
@@ -90,6 +91,7 @@ hr {
   <div class="container signin">
     <p>If you don't have an account <a href="register.php">Sign up</a>.</p>
   </div>
+-->
 </form>
 </body>
 </html>
