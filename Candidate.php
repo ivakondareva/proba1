@@ -1,11 +1,14 @@
 <!DOCTYPE html 5.0>
 <html>
 <head>
+<link rel="import" href="nav.php">
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 
 <title> data </title>
 </head>
 <body>
+<div w3-include-html="nav.php"></div> 
+</br>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -15,7 +18,8 @@ $database= mysqli_select_db($conn, 'dorothy');
 $flag=-1;
 if(isset($_REQUEST["id"]))
     {
-        $Id = $_REQUEST["id"];
+        $Id = urldecode($_REQUEST["id"]);
+        echo"$Id";
         $word=array(
             "Id",
             "Name",

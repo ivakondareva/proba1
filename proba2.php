@@ -1,11 +1,14 @@
 <!DOCTYPE html 5.0>
 <html>
 <head>
+<link rel="import" href="nav.php">
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 
 <title> data </title>
 </head>
 <body>
+<div w3-include-html="nav.php"></div> 
+</br>
 <?php
 session_start();
 $servername = "localhost";
@@ -14,7 +17,7 @@ $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 
-if (isset($_SESSION['username']) && $_SESSION['loggedin']==true)
+if (isset($_SESSION['username']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
 {
 echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
@@ -52,7 +55,7 @@ echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
     </br>
   <input type='submit' name='Save' value='SaveMe' />
 </form>";
-$images = array("Ivka.docx");
+$images = array("Ivkan.docx");
 // Loop through array to create image gallery
 foreach($images as $image){
   echo '<div class="img-box">';

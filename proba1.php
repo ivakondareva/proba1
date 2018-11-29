@@ -13,15 +13,18 @@ table, th, td {
 }
 </style>
 -->
-<link rel="import" href="nav.html">
+<link rel="import" href="nav.php">
 
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 <title> data </title>
 </head>
 <body>
-<div w3-include-html="nav.html"></div> 
+<div w3-include-html="nav.php"></div> 
 </br>
 <?php
+session_start();
+if (isset($_SESSION['username']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
+{
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -77,7 +80,8 @@ for($j=0;$j<$ind;$j++)
 		$temp=$arr[0][$j];
 		$tempname=$arr[$i][$j];
 		if($i==1)
-		{echo "<a href='Candidate.php?id=$temp' style='color: RGB(103,117,124)'> $tempname
+		{$user=$_SESSION['username'];
+		echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
 		</a>";}
 		else printf("%s</br>",$arr[$i][$j]);
 		echo "</td>";
@@ -86,6 +90,13 @@ for($j=0;$j<$ind;$j++)
 }
 echo "</table>";
 mysqli_close($conn);
+}
+else
+{
+  $bam="not logged in";
+  printf("%s",$bam);
+  echo "<a href='register/login.php'>Login</a>";
+}
 ?>
 </body>
 </html>
