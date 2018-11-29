@@ -24,9 +24,38 @@
 <link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard1.css">
 <link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard2.css">
 -->
-<link rel="import" href="nav.html">
-<style>
 
+<style>
+body {
+    background-color:white;
+}
+h1{
+    padding: 60px;
+  text-align: center;
+  background: #a585d3;
+  color: black;
+  font-size: 50px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #a585d3;
+}
+li{
+    float:left;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #52377a;
+}
 * {box-sizing: border-box}
 /* Add padding to containers */
 .container {
@@ -71,14 +100,18 @@ hr {
 }
 </style>
 <body>
-<div w3-include-html="nav.html"></div> 
-</br>
+<h1> Project for Dorothy </h1>
+<p> <a href="http://localhost/ORAK/register/index.php?logout='1'" style="color: red;">logout</a> </p> 
+<ul>
 
+    <li><a href="proba1.php">PersonList</a></li>
+    <li><a href="proba2.php">EditPerson</a></li>
+    <li><a href="about">About</a></li>
+</ul>
 <form action="action_page.php">
   <div class="container">
     <h2>Log In</h2>
     <hr>
-
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
 
