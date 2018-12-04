@@ -16,8 +16,7 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
-
-if (isset($_SESSION['username'])&& isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
+if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
 echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
@@ -94,12 +93,9 @@ if(isset($_POST['InputName']))
   $InputYear= $_POST['Year'];
   $InputResume= $_POST['Resume'];
   $InputPosition= $_POST['Position'];
+  $InputAddedBy= $_SESSION['username'];
 }
-if(isset($_POST['Save']))
-    {
-        func();
-    }
-    function func()
+function func()
     {
       $NameTaken=$GLOBALS['InputName'];
       $EmailTaken=$GLOBALS['InputEmail'];
@@ -115,9 +111,10 @@ if(isset($_POST['Save']))
       $BirthTaken=date('Y-m-d',$BirthTaken);
       $ResumeTaken=$GLOBALS['InputResume'];
       $PositionTaken=$GLOBALS['InputPosition'];
+      $NowAddedBy=$GLOBALS['InputAddedBy'];
       
-        $sql = "INSERT INTO candidates (Name, PhoneNumber, Email, Sex , DateOfBirth, Resume, Position)
-      VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken')";
+        $sql = "INSERT INTO candidates (Name, PhoneNumber, Email, Sex , DateOfBirth, Resume, Position,AddedBy)
+      VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy')";
       if($GLOBALS['conn'] -> query($sql)==TRUE)
       {
           //header("refresh:0;");
@@ -137,6 +134,11 @@ if(isset($_POST['Save']))
           echo "NE" .$sql."<br>".$conn->error;
       } 
     }
+if(isset($_POST['Save']))
+    {
+        func();
+    }
+    
 mysqli_close($conn);
 }
 else
