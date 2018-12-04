@@ -95,7 +95,7 @@ else
 {
   $bam="not logged in";
   printf("%s",$bam);
-  echo "<a href='register/login.php'>Login</a>";
+  echo "<a href='Home.php'>Login</a>";
 }
 ?>
 </body>
