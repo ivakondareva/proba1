@@ -5,19 +5,35 @@
 body {
     background-color:white;
 }
-h1{
-    padding: 60px;
+#logo {
+    padding: 10px;
   text-align: center;
-  background: #a585d3;
+  background: #DD74F2;
   color: black;
-  font-size: 50px;
+  font-size: 30px;
 }
+#logo a{
+    float:right;
+    display:block;
+    text-align:right;
+    font-size:20px;
+    color: black;
+    text-decoration: none;
+    display:none;
+
+
+}
+#logo a:link{
+    color: #FFF;
+}
+
 ul {
+    border: 1px solid black;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #a585d3;
+    background-color: #D374F2;
 }
 li{
     float:left;
@@ -30,7 +46,7 @@ li a {
     text-decoration: none;
 }
 li a:hover {
-    background-color: #52377a;
+    background-color: #E88AFA;
 }
 </style>
 <script>
@@ -64,12 +80,16 @@ li a:hover {
         </script>
 </head>
 <body>
+<div id="logo">
+<a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a> 
 <h1> Project for Dorothy </h1>
+ </div>
 <ul>
     
 <?php
 session_start();
-if (isset($_SESSION['username']) && $_SESSION['loggedin']==true)
+$logout=false;
+if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {$user=$_SESSION['username'];
 echo
 "
@@ -78,6 +98,11 @@ echo
     <li><a href='proba2.php?user=$user'>EditPerson</a></li>
     <li><a href='about'?user=$user'>About</a></li>
 ";
+?>
+<style type="text/css">#logo a{
+display:block;
+}</style>
+<?php
 }
 else
 {
@@ -96,3 +121,4 @@ else
     </script>
 </body>
 </html>
+
