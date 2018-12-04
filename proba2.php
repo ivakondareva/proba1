@@ -17,7 +17,7 @@ $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 
-if (isset($_SESSION['username']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
+if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
 {
 echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
