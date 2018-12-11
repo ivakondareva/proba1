@@ -4,20 +4,23 @@
     <style>
 body {
     background-color:white;
+    font-family: Georgia, serif;
 }
 #logo {
     padding: 10px;
   text-align: center;
-  background: #DD74F2;
-  color: black;
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg");
+  background-size:100%;
+  color: white;
   font-size: 30px;
+  font-style: italic;
 }
 #logo a{
     float:right;
     display:block;
     text-align:right;
     font-size:20px;
-    color: black;
+    color: white;
     text-decoration: none;
     display:none;
 
@@ -26,6 +29,9 @@ body {
 #logo a:link{
     color: #FFF;
 }
+.input-type{
+    display:none;
+}
 
 ul {
     border: 1px solid black;
@@ -33,20 +39,21 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #D374F2;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiqeUFv-XPb1HXYqQZyEJ6N6ggPdB1XG1CkdyS1DG3gmPKCRnB");
+    background-size:100%;
 }
 li{
     float:left;
 }
 li a {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 li a:hover {
-    background-color: #E88AFA;
+    background-color: #9999FF;
 }
 </style>
 <script>
@@ -81,7 +88,8 @@ li a:hover {
 </head>
 <body>
 <div id="logo">
-<a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a> 
+<a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a>
+<input type="image" src="https://softuni.bg/companies/profile/logo/244"> 
 <h1> Project for Dorothy </h1>
  </div>
 <ul>
@@ -100,7 +108,11 @@ echo
 ?>
 <style type="text/css">#logo a{
 display:block;
-}</style>
+}
+.input-group{
+    display:none;
+}
+</style>
 <?php
 }
 else
@@ -115,8 +127,11 @@ else
 }
 ?>
 </ul>
+
 <script>
         includeHTML();
+
     </script>
+
 </body>
 </html>
