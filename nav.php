@@ -88,7 +88,6 @@ li a:hover {
     
 <?php
 session_start();
-$logout=false;
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {$user=$_SESSION['username'];
 echo
@@ -121,4 +120,3 @@ else
     </script>
 </body>
 </html>
-
