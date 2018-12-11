@@ -19,21 +19,25 @@ $idFound=-1;
 if(isset($_REQUEST["id"]))
     {
         $Id = urldecode($_REQUEST["id"]);
-        echo"$Id";
         $word=array(
             "Id",
             "Name",
             "Email",
-            "PhoneNumber",);
+            "PhoneNumber",
+            "Sex",
+            "DateOfBirth",
+            "CV",
+            "Resume",
+            "Position",
+            "AddedBy");
         
         $i=0;
         $arr=array();
-        for($i=0;$i<4;$i++)
+        for($i=0;$i<10;$i++)
         {
-            $sql = "SELECT $word[$i] FROM candidates ORDER BY Name";
+            $sql = "SELECT $word[$i] FROM candidates Where Id=$Id";
             //$sqlphone .= "SELECT id FROM candidates";
             
-            $ind=0;
             // Execute multi query
             if (mysqli_multi_query($conn,$sql))
             {
@@ -45,9 +49,8 @@ if(isset($_REQUEST["id"]))
                           while ($row=mysqli_fetch_row($sql))
                         {
                             
-                               $arr[$ind][$i]=$row[0];
-                               if($row[0]==$Id){$idFound=$ind;break;}
-                               $ind++;
+                               $arr[$i]=$row[0];
+                               
                             //printf("%s</br>",$row[0]);
                         }
                        
@@ -59,17 +62,17 @@ if(isset($_REQUEST["id"]))
         }
         
         "</br>";
-        $tempId=$arr[$idFound][0];
+    /*    $tempId=$arr[0];
         echo "<table>
         <th>Name</th>
         <th>Email</th>
         <th>Phone Number</th>";
             echo "<tr>";
-            for($i=1;$i<4;$i++)
+            for($i=1;$i<10;$i++)
             {
                 echo "<td>";
                 echo "<center>";
-                $tempFeat=$arr[$idFound][$i];
+                $tempFeat=$arr[$i];
                 if($i==1)
                 {echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat
                 </a>";}
@@ -78,10 +81,27 @@ if(isset($_REQUEST["id"]))
             }
             echo "</tr>";
         echo "</table>";
-        
+    */    
+    $Id = $arr[0];
+    $Name = $arr[1];
+    $Email = $arr[2];
+    $PhoneNumber = $arr[3];
+    $Sex = $arr[4];
+    $DateOfBirth = $arr[5];
+    $CV = $arr[6];
+    $Resume = $arr[7];
+    $Position = $arr[8];
+    $AddedBy = $arr[9];
+    $images = array("$Name".".jpeg");
+    // Loop through array to create image gallery
+    foreach($images as $image){
+      echo '<div class="img-box">';
+        echo '<img src="Files/' . $image . '" width="300" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">';
+        echo '<p><a href="download.php?file=' . $image . '">Download</a></p>';
+      echo '</div>';
     }
 
-
+    }
 
 
 mysqli_close($conn);
