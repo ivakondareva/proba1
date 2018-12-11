@@ -9,7 +9,7 @@ body {
 #logo {
     padding: 10px;
   text-align: center;
-  background-image: url("http://itschool.dev.bg/application/uploads/tutorials/gallery/maqpen4eva/6/1.jpg");
+  background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
   background-size:100%;
   color: white;
   font-size: 30px;
@@ -103,7 +103,7 @@ echo
     <li><a href='Home.php?user=$user'> Home </a></li>
     <li><a href='proba1.php?user=$user'>PersonList</a></li>
     <li><a href='proba2.php?user=$user'>EditPerson</a></li>
-    <li><a href='about'?user=$user'>About</a></li>
+    <li><a href='Search.php?user=$user'>Search</a></li>
 ";
 ?>
 <style type="text/css">#logo a{
@@ -122,7 +122,7 @@ else
         <li><a href='Home.php'> Home </a></li>
         <li><a href='proba1.php'>PersonList</a></li>
         <li><a href='proba2.php'>EditPerson</a></li>
-        <li><a href='about'>About</a></li>
+        <li><a href='Search.php'>Search</a></li>
     ";
 }
 ?>
