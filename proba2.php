@@ -137,7 +137,8 @@ function func()
 if(isset($_POST['Save']))
     {
         func();
-        header('location:Home.php');
+        $userche='location:proba2.php?user='.$_SESSION['username'];
+        header($userche);
     }
     
 mysqli_close($conn);
