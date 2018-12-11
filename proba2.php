@@ -113,7 +113,7 @@ function func()
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
       
-        $sql = "INSERT INTO candidates (Name, PhoneNumber, Email, Sex , DateOfBirth, Resume, Position,AddedBy)
+        $sql = "INSERT INTO candidates (Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position,AddedBy)
       VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy')";
       if($GLOBALS['conn'] -> query($sql)==TRUE)
       {
