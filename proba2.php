@@ -137,6 +137,7 @@ function func()
 if(isset($_POST['Save']))
     {
         func();
+        header('location:Home.php');
     }
     
 mysqli_close($conn);
