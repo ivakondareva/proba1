@@ -9,7 +9,7 @@ body {
 #logo {
     padding: 10px;
   text-align: center;
-  background-image: url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg");
+  background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
   background-size:100%;
   color: white;
   font-size: 30px;
