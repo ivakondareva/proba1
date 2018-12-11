@@ -9,7 +9,7 @@ body {
 #logo {
     padding: 10px;
   text-align: center;
-  background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
+  background-image: url("http://itschool.dev.bg/application/uploads/tutorials/gallery/maqpen4eva/6/1.jpg");
   background-size:100%;
   color: white;
   font-size: 30px;
