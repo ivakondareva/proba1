@@ -15,7 +15,7 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
-$flag=-1;
+$idFound=-1;
 if(isset($_REQUEST["id"]))
     {
         $Id = urldecode($_REQUEST["id"]);
@@ -45,8 +45,8 @@ if(isset($_REQUEST["id"]))
                           while ($row=mysqli_fetch_row($sql))
                         {
                             
-                               $arr[$i][$ind]=$row[0];
-                               if($row[0]==$Id) $flag=$ind;
+                               $arr[$ind][$i]=$row[0];
+                               if($row[0]==$Id){$idFound=$ind;break;}
                                $ind++;
                             //printf("%s</br>",$row[0]);
                         }
@@ -57,8 +57,9 @@ if(isset($_REQUEST["id"]))
                   while (mysqli_more_results($conn) && mysqli_next_result($conn));
             }
         }
-        $j=0;
+        
         "</br>";
+        $tempId=$arr[$idFound][0];
         echo "<table>
         <th>Name</th>
         <th>Email</th>
@@ -68,12 +69,11 @@ if(isset($_REQUEST["id"]))
             {
                 echo "<td>";
                 echo "<center>";
-                $temp=$arr[0][$j];
-                $tempname=$arr[$i][$flag];
+                $tempFeat=$arr[$idFound][$i];
                 if($i==1)
-                {echo "<a href='Candidate.php?id=$temp' style='color: RGB(103,117,124)'> $tempname
+                {echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat
                 </a>";}
-                else printf("%s</br>",$arr[$i][$flag]);
+                else printf("%s</br>",$tempFeat);
                 echo "</td>";
             }
             echo "</tr>";
