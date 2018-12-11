@@ -92,13 +92,23 @@ if(isset($_REQUEST["id"]))
     $Resume = $arr[7];
     $Position = $arr[8];
     $AddedBy = $arr[9];
-    $images = array("$Name".".jpeg");
+    $images = array("$Name".".jpg");
     // Loop through array to create image gallery
     foreach($images as $image){
-      echo '<div class="img-box">';
-        echo '<img src="Files/' . $image . '" width="300" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">';
-        echo '<p><a href="download.php?file=' . $image . '">Download</a></p>';
-      echo '</div>';
+        echo '<center>
+        <div class="img-box">
+            <img src="Files/' . $image . '" width="150" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">
+        </div>
+        </br>
+        <label>NAME:</label>
+        <label>'.$Name.'</label>
+        </br>
+        <label>Email:</label>
+        <label>'.$Email.'</label>
+        </br>
+        <label>Phone Number:</label>
+        <label>'.$PhoneNumber.'</label>
+      </center>';
     }
 
     }
