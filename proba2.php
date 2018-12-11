@@ -105,10 +105,10 @@ function func()
       $DayTaken=(string)$GLOBALS['InputDay'];
       $MonthTaken=(string)$GLOBALS['InputMonth'];
       $YearTaken=(string)$GLOBALS['InputYear'];
-      $tire='-';
-      $BirthTaken=$YearTaken.$tire.$MonthTaken.$tire.$DayTaken;
+      $tire='/';
+      $BirthTaken=$DayTaken.$tire.$MonthTaken.$tire.$YearTaken;
       $BirthTaken=strtotime($BirthTaken);
-      $BirthTaken=date('Y-m-d',$BirthTaken);
+      $BirthTaken=date('d/m/Y',$BirthTaken);
       $ResumeTaken=$GLOBALS['InputResume'];
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
