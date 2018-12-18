@@ -94,6 +94,7 @@ if(isset($_POST['InputName']))
   $InputResume= $_POST['Resume'];
   $InputPosition= $_POST['Position'];
   $InputAddedBy= $_SESSION['username'];
+  $InputDateOfApplication= date("Y/m/d");
 }
 function func()
     {
@@ -112,9 +113,9 @@ function func()
       $ResumeTaken=$GLOBALS['InputResume'];
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
-      
-        $sql = "INSERT INTO candidates (Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position,AddedBy)
-      VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy')";
+      $DateOfApplication = $GLOBALS['InputDateOfApplication'];
+        $sql = "INSERT INTO candidates (Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position, AddedBy, DateOfApplication)
+      VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy', '$DateOfApplication')";
       if($GLOBALS['conn'] -> query($sql)==TRUE)
       {
           //header("refresh:0;");

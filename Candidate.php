@@ -29,11 +29,12 @@ if(isset($_REQUEST["id"]))
             "CV",
             "Resume",
             "Position",
-            "AddedBy");
+            "AddedBy",
+            "DateOfApplication");
         
         $i=0;
         $arr=array();
-        for($i=0;$i<10;$i++)
+        for($i=0;$i<count($word);$i++)
         {
             $sql = "SELECT $word[$i] FROM candidates Where Id=$Id";
             //$sqlphone .= "SELECT id FROM candidates";
@@ -92,6 +93,10 @@ if(isset($_REQUEST["id"]))
     $Resume = $arr[7];
     $Position = $arr[8];
     $AddedBy = $arr[9];
+    if($arr[10]!=null)
+    $DateOfApplication = $arr[10];
+    else
+    $DateOfApplication = "No information";
     $images = array("$Name".".jpg");
     // Loop through array to create image gallery
     foreach($images as $image){
@@ -108,12 +113,28 @@ if(isset($_REQUEST["id"]))
         </br>
         <label>Phone Number:</label>
         <label>'.$PhoneNumber.'</label>
+        </br>
+        <label>Phone Number:</label>
+        <label>'.$Sex.'</label>
+        </br>
+        <label>Date Of Birth:</label>
+        <label>'.$DateOfBirth.'</label>
+        </br>
+        <label>Resume:</label>
+        <label>'.$Resume.'</label>
+        </br>
+        <label>Position:</label>
+        <label>'.$Position.'</label>
+        </br>
+        <label>AddedBy:</label>
+        <label>'.$AddedBy.'</label>
+        </br>
+        <label>Date Of Application:</label>
+        <label>'.$DateOfApplication.'</label>
+        </br>
       </center>';
     }
-
     }
-
-
 mysqli_close($conn);
 ?>
 </body>
