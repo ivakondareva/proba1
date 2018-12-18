@@ -1,3 +1,4 @@
+<?php include('register/server.php') ?>
 <!DOCTYPE html 5.0>
 <html>
 <head>
@@ -25,6 +26,7 @@
 <link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard2.css">
 -->
 <link rel="import" href="nav.php">
+<link rel="import" href="http://localhost/ORAK/register/login.php">
 <style>
 * {box-sizing: border-box}
 /* Add padding to containers */
@@ -68,11 +70,71 @@ hr {
   background-color: #f1f1f1;
   text-align: center;
 }
+.btn-group .button {
+  background-color: black; /* Green */
+  border: 1px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  display: block;
+}
+
+.btn-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  background-color:	#708090;
+}
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:active {
+  background-color: black;
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
+}
 </style>
+<?php
+if(isset($_POST['toCandidates']))
+{
+        $userche='location:proba2.php?user='.$_SESSION['username'];
+        header($userche);
+}
+else
+if(isset($_POST['toEmployees']))
+{
+        $userche='location:Home.php?user='.$_SESSION['username'];
+        header($userche);
+}
+?>
 <body>
-<p> <a href="http://localhost/ORAK/register/index.php?logout='1'" style="color: red;">logout</a> </p> 
+
 <div w3-include-html="nav.php"></div> 
 </br>
+<div w3-include-html="http://localhost/ORAK/register/login.php"> </div>
+
+<form action='Home.php' method='post'  class="btn-group" enctype='multipart/form-data'>
+<button type="submit" name="toCandidates"  class="button" > Go to Candidates </button>
+<button type="submit" name="toEmployees" class="button" > Go to Employees </button>
+</form>
 <!--
 <form action="action_page.php">
   <div class="container">
@@ -80,18 +142,15 @@ hr {
     <hr>
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
-
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-
-
     <button type="submit" class="registerbtn">Log in</button>
   </div>
-
   <div class="container signin">
     <p>If you don't have an account <a href="register.php">Sign up</a>.</p>
   </div>
--->
+
 </form>
+-->
 </body>
 </html>
