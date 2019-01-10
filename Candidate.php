@@ -93,7 +93,7 @@ if(isset($_REQUEST["id"]))
     $Resume = $arr[7];
     $Position = $arr[8];
     $AddedBy = $arr[9];
-    if($arr[10]!=null)
+    if(isset($arr[10])==1)
     $DateOfApplication = $arr[10];
     else
     $DateOfApplication = "No information";
