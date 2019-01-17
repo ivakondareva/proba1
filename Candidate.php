@@ -8,6 +8,19 @@
 </head>
 <body>
 <div w3-include-html="nav.php"></div> 
+<style>
+input.dotted {border-style: dotted;}
+input.dashed {border-style: dashed;}
+input.solid {border-style: solid;}
+input.double {border-style: double;}
+input.groove {border-style: groove;}
+input.ridge {border-style: ridge;}
+input.inset {border-style: inset;}
+input.outset {border-style: outset;}
+input.none {border-style: none;}
+input.hidden {border-style: hidden;}
+input.mix {border-style: dotted dashed solid double;}
+</style>
 </br>
 <?php
 $servername = "localhost";
@@ -106,7 +119,7 @@ if(isset($_REQUEST["id"]))
         </div>
         </br>
         <label>NAME:</label>
-        <label>'.$Name.'</label>
+        <input type="text"  class="hidden" value='.$Name.'</label>
         </br>
         <label>Email:</label>
         <label>'.$Email.'</label>
