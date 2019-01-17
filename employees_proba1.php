@@ -75,7 +75,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     {
         echo "<tr>";
         for($i=1;$i<4;$i++)
-        {   if($arr[4][$j]==0)
+        {   if($arr[4][$j]==1)
             {
                 echo "<td>";
                 echo "<center>";
