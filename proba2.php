@@ -8,19 +8,6 @@
 </head>
 <body>
 <div w3-include-html="nav.php"></div> 
-<style>
-input.dotted {border-style: dotted;}
-input.dashed {border-style: dashed;}
-input.solid {border-style: solid;}
-input.double {border-style: double;}
-input.groove {border-style: groove;}
-input.ridge {border-style: ridge;}
-input.inset {border-style: inset;}
-input.outset {border-style: outset;}
-input.none {border-style: none;}
-input.hidden {border-style: hidden;}
-input.mix {border-style: dotted dashed solid double;}
-</style>
 </br>
 <?php
 session_start();
@@ -32,11 +19,14 @@ $database= mysqli_select_db($conn, 'dorothy');
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
 echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
+<input type='radio' name='IsCandidate' value='1'/>Кандидат
+<input type='radio' name='IsCandidate' value='0'/>Служител
+</br>
   <input type='text' name='InputName' placeholder='Име'/>
   </br>
   <input type='text' name='InputEmail' placeholder='Имейл'/>
   </br>
-  <input type='text' class='hidden' name='InputPhone' placeholder='Телефон'/>
+  <input type='text' name='InputPhone' placeholder='Телефон'/>
   </br>
   
   <input type='radio' name='Sex' value='1'/>Мъж
@@ -97,6 +87,7 @@ foreach($images as $image){
  }
 if(isset($_POST['InputName']))
 {
+  $InputIsCandidate = $_POST['IsCandidate'];
   $InputName = $_POST['InputName'];
   $InputEmail = $_POST['InputEmail'];
   $InputPhone = $_POST['InputPhone'];
@@ -111,6 +102,7 @@ if(isset($_POST['InputName']))
 }
 function func()
     {
+      $IsCandidateTaken=$GLOBALS['InputIsCandidate'];
       $NameTaken=$GLOBALS['InputName'];
       $EmailTaken=$GLOBALS['InputEmail'];
       $PhoneTaken=$GLOBALS['InputPhone'];
@@ -127,8 +119,8 @@ function func()
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
       $DateOfApplication = $GLOBALS['InputDateOfApplication'];
-        $sql = "INSERT INTO candidates (Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position, AddedBy, DateOfApplication)
-      VALUES ('$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy', '$DateOfApplication')";
+        $sql = "INSERT INTO candidates (IsCandidate, Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position, AddedBy, DateOfApplication)
+      VALUES ('$IsCandidateTaken', '$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy', '$DateOfApplication')";
       if($GLOBALS['conn'] -> query($sql)==TRUE)
       {
           //header("refresh:0;");
