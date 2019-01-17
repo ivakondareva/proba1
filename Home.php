@@ -115,7 +115,7 @@ hr {
 <?php
 if(isset($_POST['toCandidates']))
 {
-        $userche='location:proba2.php?user='.$_SESSION['username'];
+        $userche='location:proba1.php?user='.$_SESSION['username'];
         header($userche);
 }
 else
