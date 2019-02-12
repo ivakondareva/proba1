@@ -19,6 +19,10 @@ p {
   font-size: 30px;
   font-weight: bold;
 }
+th {
+	padding: 20px;
+	margin:20px;
+}
 </style>
 <link rel="import" href="nav.php">
 
@@ -43,6 +47,7 @@ p {
   background-color: #708090;
 }
 .button {
+	float:left;
   display: inline-block;
   padding: 15px 25px;
   font-size: 24px;
@@ -62,10 +67,6 @@ p {
   transform: translateY(4px);
 }
 </style>
-<form action='proba1.php' method='post'  class="btn-group" enctype='multipart/form-data'>
-<button type="submit" name="candidatesBtn"  class="button" > See Candidates </button>
-<button type="submit" name="employeesBtn" class="button" > See Employees </button>
-</form>
 
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 <title> data </title>
@@ -133,10 +134,18 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
         }
     }
     $j=0;
-    "</br>";
+	"</br>";
+	 echo "<form action='proba1.php' method='post'  class='btn-group' enctype='multipart/form-data'>
+	<button type='submit' name='candidatesBtn'  class='button' > See Candidates </button>
+	<button type='submit' name='employeesBtn' class='button' > See Employees </button>
+	</form>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
     echo "<table>
     <th>Име</th>
-    <th>E-mail</th>
+	<th>E-mail
+	</th>
     <th>Телефонен Номер</th>";
     $isCand=$_REQUEST["isCandidate"];
     for($j=0;$j<$ind;$j++)
