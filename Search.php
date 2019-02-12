@@ -29,11 +29,12 @@ $idFound=-1;
 
 echo "<form action='Search.php' method='post' enctype='multipart/form-data'>
   <select name='Type'>
-      <option value='01'>Imena</option>
-      <option value='02'>Rojdena data</option>
+        <optgroup label='Изберете филтър на търсене'>
+      <option value='01'>Имена</option>
+      <option value='02'>Рождена дата</option>
   </select> 
-  <input type='text' name='InputSearchInfo' placeholder='Vuvedi kogo tursish'/>
-  <input type='submit' name='LetsSearch' value='SearchCandidate' />
+  <input type='text' name='InputSearchInfo' placeholder='Въведете името или рождената дата на търсения'/>
+  <input type='submit' name='LetsSearch' value='Търсене' />
   </form>
   ";
 	
