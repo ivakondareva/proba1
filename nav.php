@@ -23,8 +23,6 @@ body {
     color: white;
     text-decoration: none;
     display:none;
-
-
 }
 #logo a:link{
     color: #FFF;
@@ -32,7 +30,6 @@ body {
 .input-type{
     display:none;
 }
-
 ul {
     border: 1px solid black;
     list-style-type: none;
@@ -101,7 +98,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
 echo
 "
     <li><a href='Home.php?user=$user'> Home </a></li>
-    <li><a href='proba1.php?user=$user'>PersonList</a></li>
+    <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
     <li><a href='proba2.php?user=$user'>EditPerson</a></li>
     <li><a href='Search.php?user=$user'>Search</a></li>
 ";
@@ -130,7 +127,6 @@ else
 
 <script>
         includeHTML();
-
     </script>
 
 </body>
