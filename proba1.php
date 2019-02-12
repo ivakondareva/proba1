@@ -13,7 +13,53 @@ table, th, td {
 }
 </style>
 -->
+
 <link rel="import" href="nav.php">
+
+<style>
+.btn-group .button {
+  background-color: black; /* Green */
+  border: 1px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  display: block;
+}
+.btn-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+.btn-group .button:hover {
+  background-color: #708090;
+}
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:active {
+  background-color: black;
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
+}
+</style>
+<form action='proba1.php' method='post'  class="btn-group" enctype='multipart/form-data'>
+<button type="submit" name="candidatesBtn"  class="button" > See Candidates </button>
+<button type="submit" name="employeesBtn" class="button" > See Employees </button>
+</form>
 
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 <title> data </title>
@@ -23,6 +69,19 @@ table, th, td {
 </br>
 <?php
 session_start();
+if(isset($_POST['candidatesBtn']))
+	{
+        $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=1';
+        header($userche);
+	}
+	else
+	if(isset($_POST['employeesBtn']))
+	{
+        $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=0';
+        header($userche);
+	}
+?>
+<?php
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
 {
     $servername = "localhost";
@@ -37,6 +96,8 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
         "Email",
         "PhoneNumber",
         "IsCandidate");
+    
+	
     $i=0;
     $arr=array();
     for($i=0;$i<5;$i++)
@@ -71,25 +132,33 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     <th>Name</th>
     <th>Email</th>
     <th>Phone Number</th>";
+    $isCand=$_REQUEST["isCandidate"];
     for($j=0;$j<$ind;$j++)
     {
-        echo "<tr>";
-        for($i=1;$i<4;$i++)
-        {   if($arr[4][$j]==0)
-            {
+    	if($arr[4][$j]==$isCand)
+        {
+        	echo "<tr>";
+        	for($i=1;$i<4;$i++)
+        	{   
                 echo "<td>";
                 echo "<center>";
                 $temp=$arr[0][$j];
                 $tempname=$arr[$i][$j];
                 if($i==1)
-                {$user=$_SESSION['username'];
-                echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
-                </a>";}
-                else printf("%s</br>",$arr[$i][$j]);
-                echo "</td>";
+                {
+                	$user=$_SESSION['username'];
+                	echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                	</a>";
+                	echo "</td>";
+                }
+                else 
+                {
+                	printf("%s</br>",$arr[$i][$j]);
+                	echo "</td>";
+                }
             }
-        }
-        echo "</tr>";
+        	echo "</tr>";
+    	}
     }
     echo "</table>";
     mysqli_close($conn);
