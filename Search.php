@@ -1,6 +1,13 @@
 <!DOCTYPE html 5.0>
 <html>
 <head>
+<style>
+p {
+  text-align:center;
+  font-size: 30px;
+  font-weight: bold;
+}
+</style>
 <link rel="import" href="nav.php">
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 
@@ -121,6 +128,15 @@ if(isset($_POST['LetsSearch']))
 	func();
 }
 mysqli_close($conn);
+}
+else
+{
+  echo "<p>";
+  $bam="За да видите тази страница, моля, влезте в профила си!";
+  printf("%s",$bam);
+  echo "<br>";
+  echo "<a href='Home.php'>Вход</a>";
+  echo "</p>";
 }
 ?>
 </body>
