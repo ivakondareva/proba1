@@ -8,16 +8,74 @@ p {
   font-weight: bold;
 }
 </style>
+<style>
+.btn-group .button {
+  background-color: black; /* Green */
+  border: 1px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  display: block;
+}
+.btn-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+.btn-group .button:hover {
+  background-color: #708090;
+}
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:active {
+  background-color: black;
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
+}
+</style>
 <link rel="import" href="nav.php">
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
 
 <title> data </title>
+<form action='proba2.php' method='post'  class="btn-group" enctype='multipart/form-data'>
+<button type="submit" name="candidatesBtn"  class="button" > See Candidates </button>
+<button type="submit" name="employeesBtn" class="button" > See Employees </button>
+</form>
+
 </head>
 <body>
 <div w3-include-html="nav.php"></div> 
 </br>
 <?php
 session_start();
+if(isset($_POST['candidatesBtn']))
+  {
+        $userche='location:proba2.php?user='.$_SESSION['username'].'&isCandidate=1';
+        header($userche);
+  }
+  else
+  if(isset($_POST['employeesBtn']))
+  {
+        $userche='location:proba2.php?user='.$_SESSION['username'].'&isCandidate=0';
+        header($userche);
+  }
+?>
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -26,9 +84,6 @@ $database= mysqli_select_db($conn, 'dorothy');
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
 echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
-<input type='radio' name='IsCandidate' value='1'/>Кандидат
-<input type='radio' name='IsCandidate' value='0'/>Служител
-</br>
   <input type='text' name='InputName' placeholder='Име'/>
   </br>
   <input type='text' name='InputEmail' placeholder='Имейл'/>
@@ -94,7 +149,7 @@ foreach($images as $image){
  }
 if(isset($_POST['InputName']))
 {
-  $InputIsCandidate = $_POST['IsCandidate'];
+  $InputIsCandidate = $_REQUEST['isCandidate'];//=1 bachka
   $InputName = $_POST['InputName'];
   $InputEmail = $_POST['InputEmail'];
   $InputPhone = $_POST['InputPhone'];
@@ -150,7 +205,7 @@ function func()
 if(isset($_POST['Save']))
     {
         func();
-        $userche='location:proba2.php?user='.$_SESSION['username'];
+        $userche='location:proba2.php?user='.$_SESSION['username'].'&isCandidate=$_REQUEST["isCandidate"]';
         header($userche);
     }
     
