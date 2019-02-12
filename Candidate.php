@@ -29,9 +29,10 @@ $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 $idFound=-1;
+$Id=0;
 if(isset($_REQUEST["id"]))
     {
-        $Id = urldecode($_REQUEST["id"]);
+        $GLOBALS['Id'] = urldecode($_REQUEST["id"]);
         $word=array(
             "Id",
             "Name",
@@ -49,7 +50,8 @@ if(isset($_REQUEST["id"]))
         $arr=array();
         for($i=0;$i<count($word);$i++)
         {
-            $sql = "SELECT $word[$i] FROM candidates Where Id=$Id";
+            $NqkvoId = $GLOBALS['Id'];
+            $sql = "SELECT $word[$i] FROM candidates Where Id=$NqkvoId";
             //$sqlphone .= "SELECT id FROM candidates";
             
             // Execute multi query
@@ -96,11 +98,12 @@ if(isset($_REQUEST["id"]))
             echo "</tr>";
         echo "</table>";
     */    
-    $Id = $arr[0];
+    $GLOBALS['Id'] = $arr[0];
     $Name = $arr[1];
     $Email = $arr[2];
     $PhoneNumber = $arr[3];
-    $Sex = $arr[4];
+    if($arr[4]==1) $Sex="Мъж";
+    else $Sex="Жена";
     $DateOfBirth = $arr[5];
     $CV = $arr[6];
     $Resume = $arr[7];
@@ -112,14 +115,19 @@ if(isset($_REQUEST["id"]))
     $DateOfApplication = "No information";
     $images = array("$Name".".jpg");
     // Loop through array to create image gallery
+    
     foreach($images as $image){
         echo '<center>
+        <form action="Candidate.php" method="post" enctype="multipart/form-data">
+        <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
+        <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <div class="img-box">
             <img src="Files/' . $image . '" width="150" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">
         </div>
         </br>
         <label>NAME:</label>
-        <input type="text"  class="hidden" value='.$Name.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Name"].'" name="InputName"/>
+        <input type="submit" name="Save" value="SaveMe" />
         </br>
         <label>Email:</label>
         <label>'.$Email.'</label>
@@ -127,7 +135,7 @@ if(isset($_REQUEST["id"]))
         <label>Phone Number:</label>
         <label>'.$PhoneNumber.'</label>
         </br>
-        <label>Phone Number:</label>
+        <label>Sex:</label>
         <label>'.$Sex.'</label>
         </br>
         <label>Date Of Birth:</label>
@@ -145,8 +153,30 @@ if(isset($_REQUEST["id"]))
         <label>Date Of Application:</label>
         <label>'.$DateOfApplication.'</label>
         </br>
+        </form>
       </center>';
     }
+    }
+    
+    function Change()
+    {
+        $ChangeName = $_POST['InputName'];
+        $ChangeId=$_POST['InputId'];
+        echo $ChangeId;
+        $sql = "UPDATE Candidates SET Name='$ChangeName' WHERE id=$ChangeId";
+        if ($GLOBALS['conn']->query($sql) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $GLOBALS['conn']->error;
+        }
+    }
+    if(isset($_POST['Save']))
+    {
+        Change();
+        $ChangeName = $_POST['InputName'];
+        $NameZaSnimka = $_POST['NameZaDolu'];
+        rename("Files/".$NameZaSnimka.'.jpg', "Files/".$ChangeName.".jpg");
+        //header($userche);
     }
 mysqli_close($conn);
 ?>
