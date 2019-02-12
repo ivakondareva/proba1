@@ -13,7 +13,13 @@ table, th, td {
 }
 </style>
 -->
-
+<style>
+p {
+  text-align:center;
+  font-size: 30px;
+  font-weight: bold;
+}
+</style>
 <link rel="import" href="nav.php">
 
 <style>
@@ -129,9 +135,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     $j=0;
     "</br>";
     echo "<table>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone Number</th>";
+    <th>Име</th>
+    <th>E-mail</th>
+    <th>Телефонен Номер</th>";
     $isCand=$_REQUEST["isCandidate"];
     for($j=0;$j<$ind;$j++)
     {
@@ -165,9 +171,12 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
 }
 else
 {
-  $bam="not logged in";
-  printf("%s",$bam);
-  echo "<a href='Home.php'>Login</a>";
+	echo "<p>";
+	$bam="За да видите тази страница, моля, влезте в профила си!";
+	printf("%s",$bam);
+	echo "<br>";
+	echo "<a href='Home.php'>Вход</a>";
+	echo "</p>";
 }
 ?>
 </body>
