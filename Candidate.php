@@ -114,11 +114,12 @@ if(isset($_REQUEST["id"]))
     else
     $DateOfApplication = "No information";
     $images = array("$Name".".jpg");
+    $User= urldecode($_REQUEST["user"]);
     // Loop through array to create image gallery
     
     foreach($images as $image){
         echo '<center>
-        <form action="Candidate.php" method="post" enctype="multipart/form-data">
+        <form action="proba1.php?user='.$User.'" method="post" enctype="multipart/form-data">
         <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
         <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <div class="img-box">
@@ -162,13 +163,12 @@ if(isset($_REQUEST["id"]))
     {
         $ChangeName = $_POST['InputName'];
         $ChangeId=$_POST['InputId'];
-        echo $ChangeId;
         $sql = "UPDATE Candidates SET Name='$ChangeName' WHERE id=$ChangeId";
-        if ($GLOBALS['conn']->query($sql) === TRUE) {
-            echo "Record updated successfully";
-        } else {
+        if ($GLOBALS['conn']->query($sql) === FALSE) 
+        {
             echo "Error updating record: " . $GLOBALS['conn']->error;
         }
+        $GLOBALS['Name']=$_POST['NameZaDolu'];
     }
     if(isset($_POST['Save']))
     {
