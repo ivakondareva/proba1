@@ -54,7 +54,6 @@ hr {
   background-color: #f1f1f1;
   text-align: center;
 }
-
 body {
     background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
   height: 100%;
@@ -72,8 +71,6 @@ h3 { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: norm
  p { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; }
 blockquote { font-family: Segoe; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; }
  pre { font-family: Segoe; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
-
-
 h1{
     color: white;
   font-size: 60px;
@@ -100,7 +97,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-
 }
 li{
     float:right;
@@ -153,14 +149,14 @@ li a:hover {
 <ul>
     
 <?php
-
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {$user=$_SESSION['username'];
 echo
 "
     <li><a href='Home.php?user=$user'> Home </a></li>
     <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
-    <li><a href='proba2.php?user=$user'>EditPerson</a></li>
+    <li><a href='proba2.php?user=$user'>Add Candidate</a></li>
+    <li><a href='AddEmployee.php?user=$user'>Add Employee</a></li>
     <li><a href='Search.php?user=$user'>Search</a></li>
 ";
 ?>
@@ -179,8 +175,9 @@ else
     "
         <li><a href='Home.php'> Home </a></li>
         <li><a href='proba1.php'>PersonList</a></li>
-        <li><a href='proba2.php'>EditPerson</a></li>
+        <li><a href='proba2.php'>Add Candidate</a></li>
         <li><a href='Search.php'>Search</a></li>
+        <li><a href='AddEmployee.php'>Add Employee</a></li>
     ";
 }
 ?>
