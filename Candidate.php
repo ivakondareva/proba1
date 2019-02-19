@@ -119,34 +119,39 @@ if(isset($_REQUEST["id"]))
     
     foreach($images as $image){
         echo '<center>
-        <form action="proba1.php?user='.$User.'" method="post" enctype="multipart/form-data">
+        <form action="Candidate.php?user='.$User.'" method="post" enctype="multipart/form-data">
         <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
         <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "EmailZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "PNZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "SexZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "DoBZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "ResumeZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
+        <input type="text" name = "PosZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <div class="img-box">
             <img src="Files/' . $image . '" width="150" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">
         </div>
         </br>
         <label>NAME:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["Name"].'" name="InputName"/>
-        <input type="submit" name="Save" value="SaveMe" />
         </br>
         <label>Email:</label>
-        <label>'.$Email.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Email"].'" name="InputEmail"/>
         </br>
         <label>Phone Number:</label>
-        <label>'.$PhoneNumber.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["PhoneNumber"].'" name="InputPhoneNumber"/>
         </br>
         <label>Sex:</label>
-        <label>'.$Sex.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Sex"].'" name="InputSex"/>
         </br>
         <label>Date Of Birth:</label>
-        <label>'.$DateOfBirth.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["DateOfBirth"].'" name="InputDoB"/>
         </br>
         <label>Resume:</label>
-        <label>'.$Resume.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Resume"].'" name="InputResume"/>
         </br>
         <label>Position:</label>
-        <label>'.$Position.'</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Position"].'" name="InputPos"/>
         </br>
         <label>AddedBy:</label>
         <label>'.$AddedBy.'</label>
@@ -154,6 +159,7 @@ if(isset($_REQUEST["id"]))
         <label>Date Of Application:</label>
         <label>'.$DateOfApplication.'</label>
         </br>
+        <input type="submit" name="Save" value="SaveMe" />
         </form>
       </center>';
     }
@@ -163,7 +169,29 @@ if(isset($_REQUEST["id"]))
     {
         $ChangeName = $_POST['InputName'];
         $ChangeId=$_POST['InputId'];
-        $sql = "UPDATE Candidates SET Name='$ChangeName' WHERE id=$ChangeId";
+        $ChangeEmail = $_POST['InputEmail'];
+        $ChangePN = $_POST['InputPhoneNumber'];
+        if($_POST['InputSex']=="Мъж")
+        $ChangeSex = 1;
+        elseif ($_POST['InputSex']=="Жена") {
+            $ChangeSex = 0;
+        }
+        else 
+        {
+            echo "Не може джендъри, има само два пола!" . $GLOBALS['conn']->error;
+        }
+        $ChangeDoB = $_POST['InputDoB'];
+        $ChangeResume = $_POST['InputResume'];
+        $ChangePos = $_POST['InputPos'];
+        $sql = "UPDATE Candidates SET Name='$ChangeName', Email='$ChangeEmail', PhoneNumber='$ChangePN', Sex='$ChangeSex', DateOfBirth='$ChangeDoB',
+         Resume='$ChangeResume', Position='$ChangePos' WHERE id=$ChangeId";
+       /* $sql = "UPDATE Candidates SET Email='$ChangeEmail' WHERE id=$ChangeId";
+        $sql = "UPDATE Candidates SET PhoneNumber='$ChangePN' WHERE id=$ChangeId";
+        $sql = "UPDATE Candidates SET Sex='$ChangeSex' WHERE id=$ChangeId";
+        $sql = "UPDATE Candidates SET DateOfBirth='$ChangeDoB' WHERE id=$ChangeId";
+        $sql = "UPDATE Candidates SET Resume='$ChangeResume' WHERE id=$ChangeId";
+        $sql = "UPDATE Candidates SET Position='$ChangePos' WHERE id=$ChangeId"; */
+        echo "good camila";
         if ($GLOBALS['conn']->query($sql) === FALSE) 
         {
             echo "Error updating record: " . $GLOBALS['conn']->error;
