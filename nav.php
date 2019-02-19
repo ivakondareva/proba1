@@ -6,25 +6,20 @@ body {
     background-color:white;
     font-family: Georgia, serif;
 }
-h1 { font-family: Segoe; font-size: 34px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
-h3 { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; }
- p { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; }
-blockquote { font-family: Segoe; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; }
- pre { font-family: Segoe; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
-
-
 #logo {
+    padding: 10px;
   text-align: center;
   background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
   background-size:100%;
   color: white;
+  font-size: 30px;
   font-style: italic;
-  height: 32%;
 }
 #logo a{
     float:right;
     display:block;
     text-align:right;
+    font-size:20px;
     color: white;
     text-decoration: none;
     display:none;
@@ -41,6 +36,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiqeUFv-XPb1HXYqQZyEJ6N6ggPdB1XG1CkdyS1DG3gmPKCRnB");
     background-size:100%;
 }
 li{
@@ -52,7 +48,6 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size:18px;
 }
 li a:hover {
     background-color: #9999FF;
@@ -93,6 +88,7 @@ li a:hover {
 <a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a>
 <input type="image" src="https://softuni.bg/companies/profile/logo/244"> 
 <h1> Project for Dorothy </h1>
+ </div>
 <ul>
     
 <?php
@@ -103,7 +99,8 @@ echo
 "
     <li><a href='Home.php?user=$user'> Home </a></li>
     <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
-    <li><a href='proba2.php?user=$user'>EditPerson</a></li>
+    <li><a href='proba2.php?user=$user'>Add Candidate</a></li>
+    <li><a href='proba2.php?user=$user'>Add Employee</a></li>
     <li><a href='Search.php?user=$user'>Search</a></li>
 ";
 ?>
@@ -128,8 +125,6 @@ else
 }
 ?>
 </ul>
- </div>
-
 
 <script>
         includeHTML();
