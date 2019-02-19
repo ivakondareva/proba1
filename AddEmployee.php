@@ -25,7 +25,7 @@ $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
-echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
+echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
   </br>
   <input type='text' name='InputEmail' placeholder='Имейл'/>
@@ -61,37 +61,9 @@ echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
     </br>
   <input type='submit' name='Save' value='SaveMe' />
 </form>";
-$images = array("Ivkan.docx");
-// Loop through array to create image gallery
-foreach($images as $image){
-  echo '<div class="img-box">';
-    echo '<img src="Files/' . $image . '" width="300" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">';
-    echo '<p><a href="download.php?file=' . $image . '">Download</a></p>';
-  echo '</div>';
-}
- if(isset($_FILES['image'])){
-        $errors= array();
-        $file_name = $_FILES['image']['name'];
-        $file_size =$_FILES['image']['size'];
-        $file_tmp =$_FILES['image']['tmp_name'];
-        $file_type=$_FILES['image']['type'];
-        $tmp = explode('.',$_FILES['image']['name']);
-        $file_ext=strtolower(end($tmp));
-        
-        if($file_size > 2097152){
-           $errors[]='File size must be excatly 2 MB';
-        }
-        
-        if(empty($errors)==true){
-           move_uploaded_file($file_tmp,"Files/".$_POST['InputName'].".".$file_ext);
-           echo "Success";
-        }else{
-           print_r($errors);
-        }
- }
 if(isset($_POST['InputName']))
 {
-  $InputIsCandidate = 1;//=1 bachka
+  $InputIsCandidate = 0;//=1 bachka
   $InputName = $_POST['InputName'];
   $InputEmail = $_POST['InputEmail'];
   $InputPhone = $_POST['InputPhone'];
