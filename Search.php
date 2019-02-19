@@ -26,7 +26,7 @@ $database= mysqli_select_db($conn, 'dorothy');
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
 $idFound=-1;
-
+$user=$_SESSION['username'];
 echo "<form action='Search.php' method='post' enctype='multipart/form-data'>
   <select name='Type'>
         <optgroup label='Изберете филтър на търсене'>
@@ -37,19 +37,19 @@ echo "<form action='Search.php' method='post' enctype='multipart/form-data'>
   <input type='submit' name='LetsSearch' value='Търсене' />
   </form>
   ";
-	
+  
 function func()
 {
-	$searchedType=$_POST['Type'];
-	$searchedInfo=$_POST['InputSearchInfo'];
-	
-	$word=array(
-		"Id",
-		"Name",
-		"Email",
-		"PhoneNumber",
-		"Sex",
-		"DateOfBirth");
+  $searchedType=$_POST['Type'];
+  $searchedInfo=$_POST['InputSearchInfo'];
+  
+  $word=array(
+    "Id",
+    "Name",
+    "Email",
+    "PhoneNumber",
+    "Sex",
+    "DateOfBirth");
         $i=0;
         $arr=array();
         for($i=0;$i<6;$i++)
@@ -84,49 +84,51 @@ function func()
         $flag=0;
         for($j=0;$j<$ind;$j++)
         {
-        	if($searchedType=='01')
-        	{
-        		//imena
-        		if($arr[$j][1]==$searchedInfo)
-        		{
-        			$tempId=$j+1;
-        			$tempFeat=$arr[$j][1];
-        			echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat</a>";
-        			echo "</br>";
-        			$flag=1;
-        		}
-        	}
-        	else
-        	if($searchedType=='02')
-        	{
-
-        		if($arr[$j][5]==$searchedInfo)
-        		{
-        			$tempId=$j+1;
-        			$tempFeat=$arr[$j][1];
-        			echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat</a>";
-        			echo "</br>";
-        			$flag=1;
-        		}
-        	}
-        	else
-        	{
-        		$int='No matching';
-        		printf("%s",$int);
-        		echo "</br>";
-        	}
+          if($searchedType=='01')
+          {
+            //imena
+            if($arr[$j][1]==$searchedInfo)
+            {
+              $tempId=$arr[$j][0];
+              $tempFeat=$arr[$j][1];
+              $userr=$GLOBALS['user'];
+              echo "<a href='Candidate.php?user=$userr&id=$tempId' style='color: RGB(103,117,124)'> $tempFeat</a>";
+              echo "</br>";
+              
+              $flag=1;
+            }
+          }
+          else
+          if($searchedType=='02')
+          {
+            if($arr[$j][5]==$searchedInfo)
+            {
+              $tempId=$arr[$j][0];
+              $tempFeat=$arr[$j][1];
+              $userr=$GLOBALS['user'];
+              echo "<a href='Candidate.php?user=$userr&id=$tempId' style='color: RGB(103,117,124)'> $tempFeat</a>";
+              echo "</br>";
+              
+              $flag=1;
+            }
+          }
+          else
+          {
+            $int='No matching';
+            printf("%s",$int);
+            echo "</br>";
+          }
         }
         if($flag==0)
         {
-        		$int='No matching';
-        		printf("%s",$int);
-        		echo "</br>";
-
+            $int='No matching';
+            printf("%s",$int);
+            echo "</br>";
         }
 }
 if(isset($_POST['LetsSearch']))
 {
-	func();
+  func();
 }
 mysqli_close($conn);
 }
