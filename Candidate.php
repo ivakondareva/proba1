@@ -44,7 +44,8 @@ if(isset($_REQUEST["id"]))
             "Resume",
             "Position",
             "AddedBy",
-            "DateOfApplication");
+            "DateOfApplication",
+            "IsCandidate");
         
         $i=0;
         $arr=array();
@@ -113,13 +114,14 @@ if(isset($_REQUEST["id"]))
     $DateOfApplication = $arr[10];
     else
     $DateOfApplication = "No information";
+    $IsCandidate=$arr[11];
     $images = array("$Name".".jpg");
     $User= urldecode($_REQUEST["user"]);
     // Loop through array to create image gallery
     
     foreach($images as $image){
         echo '<center>
-        <form action="Candidate.php?user='.$User.'" method="post" enctype="multipart/form-data">
+        <form action="proba1.php?user='.$User.'&isCandidate='.$IsCandidate.'" method="post" enctype="multipart/form-data">
         <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
         <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <input type="text" name = "EmailZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
@@ -185,12 +187,6 @@ if(isset($_REQUEST["id"]))
         $ChangePos = $_POST['InputPos'];
         $sql = "UPDATE Candidates SET Name='$ChangeName', Email='$ChangeEmail', PhoneNumber='$ChangePN', Sex='$ChangeSex', DateOfBirth='$ChangeDoB',
          Resume='$ChangeResume', Position='$ChangePos' WHERE id=$ChangeId";
-       /* $sql = "UPDATE Candidates SET Email='$ChangeEmail' WHERE id=$ChangeId";
-        $sql = "UPDATE Candidates SET PhoneNumber='$ChangePN' WHERE id=$ChangeId";
-        $sql = "UPDATE Candidates SET Sex='$ChangeSex' WHERE id=$ChangeId";
-        $sql = "UPDATE Candidates SET DateOfBirth='$ChangeDoB' WHERE id=$ChangeId";
-        $sql = "UPDATE Candidates SET Resume='$ChangeResume' WHERE id=$ChangeId";
-        $sql = "UPDATE Candidates SET Position='$ChangePos' WHERE id=$ChangeId"; */
         echo "good camila";
         if ($GLOBALS['conn']->query($sql) === FALSE) 
         {
