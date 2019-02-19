@@ -3,43 +3,22 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html' charset=utf8">
-<title> data </title>
-</head>
-<!-- 
-<link rel="stylesheet" type="text/css" href="Styling/main/css/style.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/spinners.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/animate.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/colors/default-dark.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/flag-icon-css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/font-awesome/css/fontawesome-all.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/linea-icons/linea.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/material-design-iconic-font/css/materialdesignicons.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/simple-line-icons/css/simple-line-icons.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/themify-icons/themify-icons.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/icons/weather-icons/css/weather-icons.min.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/bootstrap-switch.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/breadcrumb-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/card-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/chat-app-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/contact-app-page.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard1.css">
-<link rel="stylesheet" type="text/css" href="Styling/main/css/pages/dashboard2.css">
--->
 <link rel="import" href="nav.php">
 <link rel="import" href="http://localhost/ORAK/register/login.php">
-<style>
-* {box-sizing: border-box}
-/* Add padding to containers */
-.container {
+    <style>
+   .container {
   padding: 16px;
+}
+#reg{
+  color:white;
 }
 /* Full-width input fields */
 input[type=text], input[type=password] {
-  width: 100%;
+  width: 20%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
+  border: 1px solid black;
   background: #f1f1f1;
 }
 input[type=text]:focus, input[type=password]:focus {
@@ -51,47 +30,7 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-/* Set a style for the submit/register button */
-.registerbtn {
-  background-color: #a585d3;
-  color: black;
-  padding: 16px 20px;
-  margin: 0 auto;
-  border: none;
-  cursor: pointer;
-  width: 10%;
-  
-}
-.registerbtn:hover {
-  opacity:1;
-}
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}
-.btn-group .button {
-  background-color: black; /* Green */
-  border: 1px solid white;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  width: 200px;
-  display: block;
-}
-
-.btn-group .button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-.btn-group .button:hover {
-  background-color:	#708090;
-}
-.button {
+.btn {
   display: inline-block;
   padding: 15px 25px;
   font-size: 24px;
@@ -105,52 +44,158 @@ hr {
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
-
-.button:active {
+.btn:active {
   background-color: black;
   box-shadow: 0 5px white;
   transform: translateY(4px);
 }
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+body {
+    background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
+  height: 100%;
+    max-width:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size:100%;
+}
+body,html {
+    height:100%;
+    max-width:100%;
+}
+h1 { font-family: Segoe; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
+h3 { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; }
+ p { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; }
+blockquote { font-family: Segoe; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; }
+ pre { font-family: Segoe; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+
+
+h1{
+    color: white;
+  font-size: 60px;
+  font-style: italic;
+}
+#logo a{
+    float:right;
+    display:block;
+    text-align:right;
+    font-size:20px;
+    color: white;
+    text-decoration: none;
+    display:none;
+}
+#logo a:link{
+    color: #FFF;
+}
+.input-type{
+    display:none;
+}
+ul {
+    border: 1px solid black;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+li{
+    float:right;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #9999FF;
+}
+</style>
+<script>
+        function includeHTML() {
+          var z, i, elmnt, file, xhttp;
+          /*loop through a collection of all HTML elements:*/
+          z = document.getElementsByTagName("*");
+          for (i = 0; i < z.length; i++) {
+            elmnt = z[i];
+            /*search for elements with a certain atrribute:*/
+            file = elmnt.getAttribute("w3-include-html");
+            if (file) {
+              /*make an HTTP request using the attribute value as the file name:*/
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                  /*remove the attribute, and call this function once more:*/
+                  elmnt.removeAttribute("w3-include-html");
+                  includeHTML();
+                }
+              } 
+              xhttp.open("GET", file, true);
+              xhttp.send();
+              /*exit the function:*/
+              return;
+            }
+          }
+        }
+        </script>
+</head>
+<body>
+<div id="logo">
+<a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a>
+<input type="image" src="https://softuni.bg/companies/profile/logo/244"> 
+<ul>
+    
+<?php
+
+if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
+{$user=$_SESSION['username'];
+echo
+"
+    <li><a href='Home.php?user=$user'> Home </a></li>
+    <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
+    <li><a href='proba2.php?user=$user'>EditPerson</a></li>
+    <li><a href='Search.php?user=$user'>Search</a></li>
+";
+?>
+<style type="text/css">#logo a{
+display:block;
+}
+.input-group{
+    display:none;
+}
 </style>
 <?php
-if(isset($_POST['toCandidates']))
-{
-        $userche='location:proba1.php?user='.$_SESSION['username'];
-        header($userche);
 }
 else
-if(isset($_POST['toEmployees']))
 {
-        $userche='location:Home.php?user='.$_SESSION['username'];
-        header($userche);
+    echo
+    "
+        <li><a href='Home.php'> Home </a></li>
+        <li><a href='proba1.php'>PersonList</a></li>
+        <li><a href='proba2.php'>EditPerson</a></li>
+        <li><a href='Search.php'>Search</a></li>
+    ";
 }
 ?>
-<body>
 
-<div w3-include-html="nav.php"></div> 
+</ul>
+<h1> Project for Dorothy </h1>
+
+ </div>
+ <div id="reg" w3-include-html="http://localhost/ORAK/register/login.php"> </div>
+
+<script>
+        includeHTML();
+    </script>
 </br>
-<div w3-include-html="http://localhost/ORAK/register/login.php"> </div>
 
-<form action='Home.php' method='post'  class="btn-group" enctype='multipart/form-data'>
-<button type="submit" name="toCandidates"  class="button" > Go to Candidates </button>
-<button type="submit" name="toEmployees" class="button" > Go to Employees </button>
-</form>
-<!--
-<form action="action_page.php">
-  <div class="container">
-    <h2>Log In</h2>
-    <hr>
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <button type="submit" class="registerbtn">Log in</button>
-  </div>
-  <div class="container signin">
-    <p>If you don't have an account <a href="register.php">Sign up</a>.</p>
-  </div>
 
-</form>
--->
 </body>
 </html>
