@@ -23,7 +23,6 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
-$Id
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
   $GLOBALS['Id']=urldecode($_REQUEST['id']);
