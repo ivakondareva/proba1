@@ -23,16 +23,110 @@ $username = "root";
 $password = "";
 $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
+$Id
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
+  $GLOBALS['Id']=urldecode($_REQUEST['id']);
+  $word=array(
+            "Id",
+            "Name",
+            "Email",
+            "PhoneNumber",
+            "Sex",
+            "DateOfBirth",
+            "CV",
+            "Resume",
+            "Position",
+            "AddedBy",
+            "DateOfApplication",
+            "IsCandidate");
+        
+        $i=0;
+        $arr=array();
+        for($i=0;$i<count($word);$i++)
+        {
+            $NqkvoId = $GLOBALS['Id'];
+            $sql = "SELECT $word[$i] FROM candidates Where Id=$NqkvoId";
+            //$sqlphone .= "SELECT id FROM candidates";
+            
+            // Execute multi query
+            if (mysqli_multi_query($conn,$sql))
+            {
+                  do
+                {
+                    // Store first result set
+                    if ($sql=mysqli_store_result($conn))
+                      {
+                          while ($row=mysqli_fetch_row($sql))
+                        {
+                            
+                               $arr[$i]=$row[0];
+                               
+                            //printf("%s</br>",$row[0]);
+                        }
+                       
+                          mysqli_free_result($sql);
+                      }
+                }
+                  while (mysqli_more_results($conn) && mysqli_next_result($conn));
+            }
+        }
+        
+        "</br>";
+    /*    $tempId=$arr[0];
+        echo "<table>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>";
+            echo "<tr>";
+            for($i=1;$i<10;$i++)
+            {
+                echo "<td>";
+                echo "<center>";
+                $tempFeat=$arr[$i];
+                if($i==1)
+                {echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat
+                </a>";}
+                else printf("%s</br>",$tempFeat);
+                echo "</td>";
+            }
+            echo "</tr>";
+        echo "</table>";
+    */    
+    $Id = $arr[0];
+    $Name = $arr[1];
+    $Email = $arr[2];
+    $PhoneNumber = $arr[3];
+    if($arr[4]==1) $Sex="Мъж";
+    else $Sex="Жена";
+    $DateOfBirth = $arr[5];
+    $CV = $arr[6];
+    $Resume = $arr[7];
+    $Position = $arr[8];
+    $AddedBy = $arr[9];
+    if(isset($arr[10])==1)
+    $DateOfApplication = $arr[10];
+    else
+    $DateOfApplication = "No information";
+    $IsCandidate=$arr[11];
+    $User= urldecode($_REQUEST["user"]);
+}
 echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
   </br>
   <input type='text' name='InputEmail' placeholder='Имейл'/>
   </br>
-  <input type='text' name='InputPhone' placeholder='Телефон'/>
+  <input type='text' name='InputWorkPhone' placeholder='Служебен телефон'/>
   </br>
-  
+  <input type='text' name='InputPersonalPhone' placeholder='Личен телефон'/>
+  </br>
+  <input type='text' name='Position' placeholder='Длъжност'/>
+  </br>
+  <input type='text' name='PeprmanentAdress' placeholder='Постоянен адрес'/>
+  </br>
+  <input type='text' name='TemporaryAdress' placeholder='Настоящ адрес'/>
+  </br>
+
   <input type='radio' name='Sex' value='1'/>Мъж
   <input type='radio' name='Sex' value='0'/>Жена
   </br>
@@ -53,37 +147,54 @@ echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'
   </select> 
   <input type='text' name='Year' placeholder='Година'/>
   </br>
+  <input type='text' name='Code' placeholder='КОД по НКПД'/>
+  </br>
+  <input type='text' name='Department' placeholder='Отдел'/>
+  </br>
+
   <textarea name='Resume' placeholder='Резюме'></textarea>
   </br>
-  <input type='text' name='Position' placeholder='Позиция'/>
-    </br>
     <input type='file' name='image' />
     </br>
   <input type='submit' name='Save' value='SaveMe' />
 </form>";
+if(isset($_REQUEST['id']))
+{
+
+}
 if(isset($_POST['InputName']))
 {
   $InputIsCandidate = 0;//=1 bachka
   $InputName = $_POST['InputName'];
   $InputEmail = $_POST['InputEmail'];
-  $InputPhone = $_POST['InputPhone'];
+  $InputWorkPhone = $_POST['InputWorkPhone'];
+  $InputPersonalPhone = $_POST['InputPersonalPhone'];
+  $InputPermanentAdress = $_POST['PeprmanentAdress'];
+  $InputTemporaryAdress = $_POST['TemporaryAdress'];
   $InputSex = $_POST['Sex'];
   $InputDay = $_POST['Day'];
   $InputMonth = $_POST['Month'];
   $InputYear= $_POST['Year'];
+  $InputCode = $_POST['Code'];
   $InputResume= $_POST['Resume'];
+  $InputDepartment = $_POST['Department'];
   $InputPosition= $_POST['Position'];
   $InputAddedBy= $_SESSION['username'];
   $InputDateOfApplication= date("Y/m/d");
 }
 function func()
     {
+      $ChangeId=$_REQUEST['id'];
       $IsCandidateTaken=$GLOBALS['InputIsCandidate'];
       $NameTaken=$GLOBALS['InputName'];
       $EmailTaken=$GLOBALS['InputEmail'];
-      $PhoneTaken=$GLOBALS['InputPhone'];
+      $WorkPhoneTaken=$GLOBALS['InputWorkPhone'];
+      $PersonalPhoneTaken=$GLOBALS['InputPersonalPhone'];
+      $PermanentAdressTaken=$GLOBALS['InputPermanentAdress'];
+      $TemporaryAdressTaken=$GLOBALS['InputTemporaryAdress'];
       $SexTaken=$GLOBALS['InputSex'];
-      
+      $CodeTaken=$GLOBALS['InputCode'];
+      $DepartmentTaken=$GLOBALS['InputDepartment'];
       $DayTaken=(string)$GLOBALS['InputDay'];
       $MonthTaken=(string)$GLOBALS['InputMonth'];
       $YearTaken=(string)$GLOBALS['InputYear'];
@@ -95,31 +206,17 @@ function func()
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
       $DateOfApplication = $GLOBALS['InputDateOfApplication'];
-        $sql = "INSERT INTO candidates (IsCandidate, Name, Email, PhoneNumber, Sex , DateOfBirth, Resume, Position, AddedBy, DateOfApplication)
-      VALUES ('$IsCandidateTaken', '$NameTaken', '$EmailTaken', '$PhoneTaken','$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy', '$DateOfApplication')";
-      if($GLOBALS['conn'] -> query($sql)==TRUE)
-      {
-          //header("refresh:0;");
-          //GLOBALS['var']=1;
-          /*$_POST = array();
-          $GLOBALS['InputName']="--";
-          global $flag=1;
-          */
-          /*$sql1 = "UPDATE flags SET lamp='1' WHERE id=1";
-          Trqbva da se dobavi zapis v lamp
-        Trqbva da se updeitne flag = 1 i ako e 1 sled refresha da izpishe NEW Record
-        */
-          //echo $GLOBALS['InputName'];
-      }
-      else 
-      {
-          echo "NE" .$sql."<br>".$conn->error;
-      } 
+        $sql = "UPDATE Candidates SET Name='$NameTaken', Email='$EmailTaken', WorkPhoneNumber='$WorkPhoneTaken', PersonalPhoneNumber='PersonalPhoneTaken', PermanentAdress='$PermanentAdressTaken', TemporaryAdress='$TemporaryAdressTaken', Code='CodeTaken', Department='DepartmentTaken', Sex='$SexTaken', DateOfBirth='$BirthTaken',Resume='$ResumeTaken', Position='$PositionTaken', IsCandidate='$IsCandidateTaken' WHERE id=$ChangeId";
+        echo "good camila";
+        if ($GLOBALS['conn']->query($sql) === FALSE) 
+        {
+            echo "Error updating record: " . $GLOBALS['conn']->error;
+        }
     }
 if(isset($_POST['Save']))
     {
         func();
-        $userche='location:proba2.php?user='.$_SESSION['username'];
+        $userche='location:AddEmployees.php?user='.$_SESSION['username'];
         header($userche);
     }
     

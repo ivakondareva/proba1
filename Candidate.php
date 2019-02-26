@@ -30,9 +30,11 @@ $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 $idFound=-1;
 $Id=0;
+$prom;
 if(isset($_REQUEST["id"]))
     {
         $GLOBALS['Id'] = urldecode($_REQUEST["id"]);
+        $GLOBALS['prom']=$GLOBALS['Id'];
         $word=array(
             "Id",
             "Name",
@@ -121,7 +123,7 @@ if(isset($_REQUEST["id"]))
     
     foreach($images as $image){
         echo '<center>
-        <form action="proba1.php?user='.$User.'&isCandidate='.$IsCandidate.'" method="post" enctype="multipart/form-data">
+        <form action="Candidate.php?user='.$User.'&isCandidate='.$IsCandidate.'" method="post" enctype="multipart/form-data">
         <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
         <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <input type="text" name = "EmailZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
@@ -164,6 +166,12 @@ if(isset($_REQUEST["id"]))
         <input type="submit" name="Save" value="SaveMe" />
         </form>
       </center>';
+      echo ' 
+      <center>
+      <form action="Candidate.php?user='.$User.'&id='.$_REQUEST['id'].'" method="post" enctype="multipart/form-data">
+        <input type="submit" name="TurnIntoEmployee" value="TurnIntoEmployee" />
+      </form>  
+      </center>';
     }
     }
     
@@ -201,6 +209,16 @@ if(isset($_REQUEST["id"]))
         $NameZaSnimka = $_POST['NameZaDolu'];
         rename("Files/".$NameZaSnimka.'.jpg', "Files/".$ChangeName.".jpg");
         //header($userche);
+    }
+    function TurnIt()
+    {
+        $id=$_GET['id'];
+        $userche='location:AddEmployee.php?user='.$_REQUEST['user'].'&id='.$id;
+        header($userche);
+    }
+    if(isset($_POST['TurnIntoEmployee']))
+    {
+        TurnIt();
     }
 mysqli_close($conn);
 ?>
