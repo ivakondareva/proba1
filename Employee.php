@@ -47,7 +47,13 @@ if(isset($_REQUEST["id"]))
             "Position",
             "AddedBy",
             "DateOfApplication",
-            "IsCandidate");
+            "IsCandidate",
+            "WorkPhoneNumber",
+            "PersonalPhoneNumber",
+            "PermanentAdress",
+            "TemporaryAdress",
+            "Department",
+            "Code");
         
         $i=0;
         $arr=array();
@@ -117,13 +123,19 @@ if(isset($_REQUEST["id"]))
     else
     $DateOfApplication = "No information";
     $IsCandidate=$arr[11];
+    $PersPhone=$arr[12];
+    $WorkPhone=$arr[13];
+    $PerAdress=$arr[14];
+    $TempAdress=$arr[15];
+    $Dep=$arr[16];
+    $CodeCode=$arr[17];
     $images = array("$Name".".jpg");
     $User= urldecode($_REQUEST["user"]);
     // Loop through array to create image gallery
     
     foreach($images as $image){
         echo '<center>
-        <form action="Candidate.php?user='.$User.'&isCandidate='.$IsCandidate.'" method="post" enctype="multipart/form-data">
+        <form action="Employee.php?user='.$User.'&isCandidate='.$IsCandidate.'" method="post" enctype="multipart/form-data">
         <input type="text" name = "InputId" value='.$GLOBALS["Id"].' hidden/>
         <input type="text" name = "NameZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
         <input type="text" name = "EmailZaDolu" value="'.$GLOBALS["Name"].'" hidden/>
@@ -136,14 +148,23 @@ if(isset($_REQUEST["id"]))
             <img src="Files/' . $image . '" width="150" alt="' .  pathinfo($image, PATHINFO_FILENAME) .'">
         </div>
         </br>
-        <label>NAME:</label>
+        <label>Name:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["Name"].'" name="InputName"/>
         </br>
         <label>Email:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["Email"].'" name="InputEmail"/>
         </br>
-        <label>Phone Number:</label>
-        <input type="text"  class="hidden" value="'.$GLOBALS["PhoneNumber"].'" name="InputPhoneNumber"/>
+        <label>Personal Phone:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["PersPhone"].'" name="PersPhoneInput"/>
+        </br>
+        <label>Work Phone:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["WorkPhone"].'" name="WorkPhoneInput"/>
+        </br>
+        <label>Permanent Adress:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["PerAdress"].'" name="PerAdressInput"/>
+        </br>
+        <label>Temporary Adress:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["TempAdress"].'" name="TempAdressInput"/>
         </br>
         <label>Sex:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["Sex"].'" name="InputSex"/>
@@ -151,22 +172,24 @@ if(isset($_REQUEST["id"]))
         <label>Date Of Birth:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["DateOfBirth"].'" name="InputDoB"/>
         </br>
-        <label>Resume:</label>
-        <input type="text"  class="hidden" value="'.$GLOBALS["Resume"].'" name="InputResume"/>
-        </br>
+
         <label>Position:</label>
         <input type="text"  class="hidden" value="'.$GLOBALS["Position"].'" name="InputPos"/>
+        </br>
+        <label>Department:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Dep"].'" name="DepInput"/>
+        </br>
+        <label>Code:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["CodeCode"].'" name="CodeInput"/>
+        </br>
+        <label>Resume:</label>
+        <input type="text"  class="hidden" value="'.$GLOBALS["Resume"].'" name="InputResume"/>
         </br>
         <label>AddedBy:</label>
         <label>'.$AddedBy.'</label>
         </br>
         <label>Date Of Application:</label>
         <label>'.$DateOfApplication.'</label>
-        </br>
-        <input type="radio" name="TurnIt" value="1"/>Employee
-        <input type="radio" name="TurnIt" checked="checked" value="0"/>Candidate
-        </br>
-        </select> 
         </br>
         <input type="submit" name="Save" value="SaveMe" />
         </form>
@@ -179,7 +202,12 @@ if(isset($_REQUEST["id"]))
         $ChangeName = $_POST['InputName'];
         $ChangeId=$_POST['InputId'];
         $ChangeEmail = $_POST['InputEmail'];
-        $ChangePN = $_POST['InputPhoneNumber'];
+        $ChangePersNumber = $_POST['PersPhoneInput'];
+        $ChangeWorkNumber = $_POST['WorkPhoneInput'];
+        $ChangePerAdress = $_POST['PerAdressInput'];
+        $ChangeTempAdress = $_POST['TempAdressInput'];
+        $ChangeDepartment = $_POST['DepInput'];
+        $ChangeCode = $_POST['CodeInput'];
         if($_POST['InputSex']=="Мъж")
         $ChangeSex = 1;
         elseif ($_POST['InputSex']=="Жена") {
@@ -192,13 +220,10 @@ if(isset($_REQUEST["id"]))
         $ChangeDoB = $_POST['InputDoB'];
         $ChangeResume = $_POST['InputResume'];
         $ChangePos = $_POST['InputPos'];
-        
 
         if(isset($_POST['TurnIt']))
         {
-            $ChangePosType=1-$_POST['TurnIt'];
-            $sql = "UPDATE Candidates SET Name='$ChangeName', Email='$ChangeEmail', PhoneNumber='$ChangePN', Sex='$ChangeSex', DateOfBirth='$ChangeDoB',
-         Resume='$ChangeResume', Position='$ChangePos', IsCandidate='$ChangePosType' WHERE id=$ChangeId";
+            $sql = "UPDATE Candidates SET Name='$ChangeName', Email='$ChangeEmail', Sex='$ChangeSex', DateOfBirth='$ChangeDoB', Resume='$ChangeResume', Position='$ChangePos', PersonalPhoneNumber='$ChangePersNumber', WorkPhoneNumber='$ChangeWorkNumber', PermanentAdress='$ChangePerAdress', TemporaryAdress='$ChangeTempAdress', Department='$ChangeDepartment', Code='$ChangeCode' WHERE id=$ChangeId";
             echo "good camila";
             if ($GLOBALS['conn']->query($sql) === FALSE) 
             {
@@ -217,7 +242,6 @@ if(isset($_REQUEST["id"]))
 
         }
         $GLOBALS['Name']=$_POST['NameZaDolu'];
-    
     }
     if(isset($_POST['Save']))
     {

@@ -161,10 +161,22 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
                 $tempname=$arr[$i][$j];
                 if($i==1)
                 {
-                	$user=$_SESSION['username'];
-                	echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
-                	</a>";
-                	echo "</td>";
+                	if($isCand==1)
+                	{
+                		$user=$_SESSION['username'];
+                		echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		</a>";
+                		echo "</td>";
+                	}
+                	else
+                	{
+                		$user=$_SESSION['username'];
+                		echo "<a href='Employee.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		</a>";
+                		echo "</td>";
+                	
+
+                	}
                 }
                 else 
                 {

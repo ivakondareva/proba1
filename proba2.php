@@ -62,7 +62,6 @@ echo "<form action='proba2.php' method='post' enctype='multipart/form-data'>
   <input type='submit' name='Save' value='SaveMe' />
 </form>";
 $images = array("Ivkan.docx");
-
  if(isset($_FILES['image'])){
         $errors= array();
         $file_name = $_FILES['image']['name'];
@@ -135,7 +134,7 @@ function func()
       }
       else 
       {
-          echo "NE" .$sql."<br>".$conn->error;
+          echo "NE" .$sql."<br>".$GLOBALS['conn']->error;
       } 
     }
 if(isset($_POST['Save']))

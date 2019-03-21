@@ -25,91 +25,6 @@ $conn = mysqli_connect($servername, $username, $password);
 $database= mysqli_select_db($conn, 'dorothy');
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true)
 {
-  $GLOBALS['Id']=urldecode($_REQUEST['id']);
-  $word=array(
-            "Id",
-            "Name",
-            "Email",
-            "PhoneNumber",
-            "Sex",
-            "DateOfBirth",
-            "CV",
-            "Resume",
-            "Position",
-            "AddedBy",
-            "DateOfApplication",
-            "IsCandidate");
-        
-        $i=0;
-        $arr=array();
-        for($i=0;$i<count($word);$i++)
-        {
-            $NqkvoId = $GLOBALS['Id'];
-            $sql = "SELECT $word[$i] FROM candidates Where Id=$NqkvoId";
-            //$sqlphone .= "SELECT id FROM candidates";
-            
-            // Execute multi query
-            if (mysqli_multi_query($conn,$sql))
-            {
-                  do
-                {
-                    // Store first result set
-                    if ($sql=mysqli_store_result($conn))
-                      {
-                          while ($row=mysqli_fetch_row($sql))
-                        {
-                            
-                               $arr[$i]=$row[0];
-                               
-                            //printf("%s</br>",$row[0]);
-                        }
-                       
-                          mysqli_free_result($sql);
-                      }
-                }
-                  while (mysqli_more_results($conn) && mysqli_next_result($conn));
-            }
-        }
-        
-        "</br>";
-    /*    $tempId=$arr[0];
-        echo "<table>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>";
-            echo "<tr>";
-            for($i=1;$i<10;$i++)
-            {
-                echo "<td>";
-                echo "<center>";
-                $tempFeat=$arr[$i];
-                if($i==1)
-                {echo "<a href='Candidate.php?id=$tempId' style='color: RGB(103,117,124)'> $tempFeat
-                </a>";}
-                else printf("%s</br>",$tempFeat);
-                echo "</td>";
-            }
-            echo "</tr>";
-        echo "</table>";
-    */    
-    $Id = $arr[0];
-    $Name = $arr[1];
-    $Email = $arr[2];
-    $PhoneNumber = $arr[3];
-    if($arr[4]==1) $Sex="Мъж";
-    else $Sex="Жена";
-    $DateOfBirth = $arr[5];
-    $CV = $arr[6];
-    $Resume = $arr[7];
-    $Position = $arr[8];
-    $AddedBy = $arr[9];
-    if(isset($arr[10])==1)
-    $DateOfApplication = $arr[10];
-    else
-    $DateOfApplication = "No information";
-    $IsCandidate=$arr[11];
-    $User= urldecode($_REQUEST["user"]);
-}
 echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'>
   <input type='text' name='InputName' placeholder='Име'/>
   </br>
@@ -125,10 +40,10 @@ echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'
   </br>
   <input type='text' name='TemporaryAdress' placeholder='Настоящ адрес'/>
   </br>
-
   <input type='radio' name='Sex' value='1'/>Мъж
   <input type='radio' name='Sex' value='0'/>Жена
   </br>
+  </select> 
   <input type='text' name='Day' placeholder='Ден'/>
   <select name='Month'>
       <option value='01'>Януари</option>
@@ -145,22 +60,18 @@ echo "<form action='AddEmployee.php' method='post' enctype='multipart/form-data'
       <option value='12'>Декември</option>
   </select> 
   <input type='text' name='Year' placeholder='Година'/>
+  
   </br>
   <input type='text' name='Code' placeholder='КОД по НКПД'/>
   </br>
   <input type='text' name='Department' placeholder='Отдел'/>
   </br>
-
   <textarea name='Resume' placeholder='Резюме'></textarea>
   </br>
     <input type='file' name='image' />
     </br>
   <input type='submit' name='Save' value='SaveMe' />
 </form>";
-if(isset($_REQUEST['id']))
-{
-
-}
 if(isset($_POST['InputName']))
 {
   $InputIsCandidate = 0;//=1 bachka
@@ -181,9 +92,10 @@ if(isset($_POST['InputName']))
   $InputAddedBy= $_SESSION['username'];
   $InputDateOfApplication= date("Y/m/d");
 }
-function func()
+
+    function func()
     {
-      $ChangeId=$_REQUEST['id'];
+      $ResumeTaken=$GLOBALS['InputResume'];
       $IsCandidateTaken=$GLOBALS['InputIsCandidate'];
       $NameTaken=$GLOBALS['InputName'];
       $EmailTaken=$GLOBALS['InputEmail'];
@@ -201,35 +113,37 @@ function func()
       $BirthTaken=$DayTaken.$tire.$MonthTaken.$tire.$YearTaken;
       $BirthTaken=strtotime($BirthTaken);
       $BirthTaken=date('d/m/Y',$BirthTaken);
-      $ResumeTaken=$GLOBALS['InputResume'];
       $PositionTaken=$GLOBALS['InputPosition'];
       $NowAddedBy=$GLOBALS['InputAddedBy'];
       $DateOfApplication = $GLOBALS['InputDateOfApplication'];
-        $sql = "UPDATE Candidates SET Name='$NameTaken', Email='$EmailTaken', WorkPhoneNumber='$WorkPhoneTaken', PersonalPhoneNumber='PersonalPhoneTaken', PermanentAdress='$PermanentAdressTaken', TemporaryAdress='$TemporaryAdressTaken', Code='CodeTaken', Department='DepartmentTaken', Sex='$SexTaken', DateOfBirth='$BirthTaken',Resume='$ResumeTaken', Position='$PositionTaken', IsCandidate='$IsCandidateTaken' WHERE id=$ChangeId";
-        echo "good camila";
-        if ($GLOBALS['conn']->query($sql) === FALSE) 
-        {
-            echo "Error updating record: " . $GLOBALS['conn']->error;
-        }
+      $sql = "INSERT INTO candidates (IsCandidate, DateOfApplication, PhoneNumber, Name, Email, Sex , DateOfBirth, Resume, Position, AddedBy, WorkPhoneNumber, PersonalPhoneNumber, PermanentAdress, TemporaryAdress, Department, Code)
+      VALUES ('$IsCandidateTaken','$DateOfApplication', '$PersonalPhoneTaken', '$NameTaken', '$EmailTaken', '$SexTaken','$BirthTaken', '$ResumeTaken', '$PositionTaken','$NowAddedBy','$WorkPhoneTaken', '$PersonalPhoneTaken', '$PermanentAdressTaken', '$TemporaryAdressTaken', '$DepartmentTaken', '$CodeTaken')";
+      if($GLOBALS['conn'] -> query($sql)==TRUE)
+      {
+          //header("refresh:0;");
+          //GLOBALS['var']=1;
+          /*$_POST = array();
+          $GLOBALS['InputName']="--";
+          global $flag=1;
+          */
+          /*$sql1 = "UPDATE flags SET lamp='1' WHERE id=1";
+          Trqbva da se dobavi zapis v lamp
+        Trqbva da se updeitne flag = 1 i ako e 1 sled refresha da izpishe NEW Record
+        */
+          //echo $GLOBALS['InputName'];
+      }
+      else 
+      {
+          echo "NE" .$sql."<br>".$conn->error;
+      } 
     }
 if(isset($_POST['Save']))
     {
         func();
-        $userche='location:AddEmployees.php?user='.$_SESSION['username'];
+        $userche='location:AddEmployee.php?user='.$_SESSION['username'];
         header($userche);
     }
-    
-mysqli_close($conn);
-}
-else
-{
-  echo "<p>";
-  $bam="За да видите тази страница, моля, влезте в профила си!";
-  printf("%s",$bam);
-  echo "<br>";
-  echo "<a href='Home.php'>Вход</a>";
-  echo "</p>";
-}
+  }
 ?>
 </body>
-</html>
+</html> 
