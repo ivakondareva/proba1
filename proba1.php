@@ -77,16 +77,15 @@ th {
 <?php
 session_start();
 if(isset($_POST['candidatesBtn']))
-	{
-        $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=1';
-        header($userche);
-	}
-	else
-	if(isset($_POST['employeesBtn']))
-	{
-        $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=0';
-        header($userche);
-	}
+{
+    $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=1';
+    header($userche);
+}
+else if(isset($_POST['employeesBtn']))
+{
+      $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=0';
+      header($userche);
+}
 ?>
 <?php
 if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['username']==$_REQUEST["user"])
@@ -94,7 +93,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     $servername = "localhost";
     $username = "root";
     $password = "";
-    // Create connection
+    
     $conn = mysqli_connect($servername, $username, $password);
     $database= mysqli_select_db($conn, 'dorothy');
     $word=array(
@@ -103,101 +102,91 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
         "Email",
         "PhoneNumber",
         "IsCandidate");
-    
-	
     $i=0;
     $arr=array();
     for($i=0;$i<5;$i++)
     {
         $sql = "SELECT $word[$i] FROM candidates ORDER BY Name";
-        //$sqlphone .= "SELECT id FROM candidates";
-        
         $ind=0;
-        // Execute multi query
         if (mysqli_multi_query($conn,$sql))
         {
             do
             {
-                // Store first result set
                 if ($sql=mysqli_store_result($conn))
                 {
                     while ($row=mysqli_fetch_row($sql))
                     {
                         $arr[$i][$ind]=$row[0];
                         $ind++;
-                        //printf("%s</br>",$row[0]);
                     }
                     mysqli_free_result($sql);
                 }
-            }
-            while (mysqli_more_results($conn) && mysqli_next_result($conn));
+            }while (mysqli_more_results($conn) && mysqli_next_result($conn));
         }
     }
     $j=0;
-	"</br>";
-	 echo "<form action='proba1.php' method='post'  class='btn-group' enctype='multipart/form-data'>
-	<button type='submit' name='candidatesBtn'  class='button' > See Candidates </button>
-	<button type='submit' name='employeesBtn' class='button' > See Employees </button>
-	</form>";
-	echo "<br>";
-	echo "<br>";
-	echo "<br>";
+	  "</br>";
+    echo "<form action='proba1.php' method='post'  class='btn-group' enctype='multipart/form-data'>
+	       <button type='submit' name='candidatesBtn'  class='button' > See Candidates </button>
+	       <button type='submit' name='employeesBtn' class='button' > See Employees </button>
+	       </form>";
+	  echo "<br>";
+	  echo "<br>";
+	  echo "<br>";
     echo "<table>
     <th>Име</th>
-	<th>E-mail
-	</th>
+	  <th>E-mail
+	  </th>
     <th>Телефонен Номер</th>";
     $isCand=$_REQUEST["isCandidate"];
     for($j=0;$j<$ind;$j++)
     {
-    	if($arr[4][$j]==$isCand)
+        if($arr[4][$j]==$isCand)
         {
-        	echo "<tr>";
-        	for($i=1;$i<4;$i++)
-        	{   
+          	echo "<tr>";
+          	for($i=1;$i<4;$i++)
+          	{   
                 echo "<td>";
                 echo "<center>";
                 $temp=$arr[0][$j];
                 $tempname=$arr[$i][$j];
                 if($i==1)
                 {
-                	if($isCand==1)
-                	{
-                		$user=$_SESSION['username'];
-                		echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
-                		</a>";
-                		echo "</td>";
-                	}
-                	else
-                	{
-                		$user=$_SESSION['username'];
-                		echo "<a href='Employee.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
-                		</a>";
-                		echo "</td>";
-                	
-
-                	}
+                    if($isCand==1)
+                	  {
+                		    $user=$_SESSION['username'];
+                		    echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		    </a>";
+                		    echo "</td>";
+                	  }
+                	  else
+                	  {
+                		    $user=$_SESSION['username'];
+                		    echo "<a href='Employee.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		    </a>";
+                		    echo "</td>";
+                	  }
                 }
                 else 
                 {
-                	printf("%s</br>",$arr[$i][$j]);
-                	echo "</td>";
+                  	printf("%s</br>",$arr[$i][$j]);
+                  	echo "</td>";
                 }
             }
-        	echo "</tr>";
-    	}
+          	echo "</tr>";
+      	}
     }
     echo "</table>";
     mysqli_close($conn);
 }
 else
-{
-	echo "<p>";
-	$bam="За да видите тази страница, моля, влезте в профила си!";
-	printf("%s",$bam);
-	echo "<br>";
-	echo "<a href='Home.php'>Вход</a>";
-	echo "</p>";
+{s
+  	echo "<p>";
+  	$bam="За да видите тази страница, моля, влезте в профила си!";
+  	printf("%s",$bam);
+  	echo "<br>";
+  	echo "<a href='Home.php'>Вход</a>";
+  	echo "</p>";
 }
 ?>
 </body>

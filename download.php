@@ -7,13 +7,15 @@
 </head>
 <body>
 <?php
-if(isset($_REQUEST["file"])){
+if(isset($_REQUEST["file"]))
+{
     // Get parameters
     $file = urldecode($_REQUEST["file"]); // Decode URL-encoded string
     $filepath = "Files/" . $file;
     
     // Process download
-    if(file_exists($filepath)) {
+    if(file_exists($filepath)) 
+    {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename='.basename($filepath));

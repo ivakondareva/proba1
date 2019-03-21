@@ -28,7 +28,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     $servername = "localhost";
     $username = "root";
     $password = "";
-    // Create connection
+    
     $conn = mysqli_connect($servername, $username, $password);
     $database= mysqli_select_db($conn, 'dorothy');
     $word=array(
@@ -41,28 +41,22 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     $arr=array();
     for($i=0;$i<5;$i++)
     {
-        $sql = "SELECT $word[$i] FROM candidates ORDER BY Name";
-        //$sqlphone .= "SELECT id FROM candidates";
-        
+        $sql = "SELECT $word[$i] FROM candidates ORDER BY Name";    
         $ind=0;
-        // Execute multi query
         if (mysqli_multi_query($conn,$sql))
         {
             do
             {
-                // Store first result set
                 if ($sql=mysqli_store_result($conn))
                 {
                     while ($row=mysqli_fetch_row($sql))
                     {
                         $arr[$i][$ind]=$row[0];
                         $ind++;
-                        //printf("%s</br>",$row[0]);
                     }
                     mysqli_free_result($sql);
                 }
-            }
-            while (mysqli_more_results($conn) && mysqli_next_result($conn));
+            }while (mysqli_more_results($conn) && mysqli_next_result($conn));
         }
     }
     $j=0;
@@ -95,10 +89,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     mysqli_close($conn);
 }
 else
-{
-  $bam="not logged in";
-  printf("%s",$bam);
-  echo "<a href='Home.php'>Login</a>";
+    {
+      $bam="not logged in";
+      printf("%s",$bam);
+      echo "<a href='Home.php'>Login</a>";
 }
 ?>
 </body>
