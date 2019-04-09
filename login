@@ -4,7 +4,7 @@
 <head>
   <title>Registration system PHP and MySQL</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-	<script>
+  <script>
         function includeHTML() {
           var z, i, elmnt, file, xhttp;
           /*loop through a collection of all HTML elements:*/
@@ -36,27 +36,27 @@
 </head>
 <body>
   <div class="header">
-  	<h2 class="input-group">Login</h2>
+    <h2 class="input-group">Login</h2>
   </div>
-	 
+   
   <form method="post" action="http://localhost/ORAK/register/login.php">
-  	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  		<label>Username</label>
-  		<input type="text" name="username" >
-  	</div>
-  	<div class="input-group">
-  		<label>Password</label>
-  		<input type="password" name="password">
-  	</div>
-  	<div class="input-group">
-  		<button type="submit" class="btn" name="login_user">Login</button>
-  	</div>
-  	<p class="input-group">
-  		Not yet a member? <a href="http://localhost/ORAK/register/register.php">Sign up</a>
-  	</p>
+    <?php include('errors.php'); ?>
+    <div class="input-group">
+      <label>Username</label>
+      <input type="text" name="username" >
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" name="password">
+    </div>
+    <div class="input-group">
+      <button type="submit" class="btn" name="login_user">Login</button>
+    </div>
+    <p class="input-group">
+      Not yet a member? <a href="http://localhost/ORAK/register/register.php">Sign up</a>
+    </p>
   </form>
-	<script>
+  <script>
         includeHTML();
     </script>
 </body>
