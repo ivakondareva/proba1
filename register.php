@@ -1,111 +1,80 @@
-<!DOCTYPE html 5.0>
+<?php include('server.php') ?>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html' charset=utf8">
-<title> data </title>
-</head>
-<style>
-body {
-    background-color:white;
-}
-h1{
-    padding: 60px;
-  text-align: center;
-  background: #a585d3;
-  color: black;
-  font-size: 50px;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #a585d3;
-}
-li{
-    float:left;
-}
-li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover {
-    background-color: #52377a;
-}
-* {box-sizing: border-box}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
+  <title>Registration system PHP and MySQL</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="import" href="nav.php">
+	<style>
+	input[type=text], input[type=password], input[type=email] {
+  width: 20%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
+  border: 1px solid black;
   background: #f1f1f1;
 }
-
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   background-color: #ddd;
   outline: none;
 }
-
 /* Overwrite default styles of hr */
+
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-
-/* Set a style for the submit/register button */
-.registerbtn {
-  background-color: #a585d3;
-  color: black;
-  padding: 16px 20px;
-  margin: 0 auto;
-  border: none;
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
   cursor: pointer;
-  width: 10%;
-  
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
-
-.registerbtn:hover {
-  opacity:1;
+.btn:active {
+  background-color: black;
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
 }
-
 </style>
+</head>
 <body>
-<h1> Project for Dorothy </h1>
-<ul>
-
-    <li><a href="proba1.php">PersonList</a></li>
-    <li><a href="proba2.php">EditPerson</a></li>
-    <li><a href="about">About</a></li>
-</ul>
-<form action="action_page.php">
-  <div class="container">
-    <h2>Register</h2>
-    <hr>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-    <hr>
-
-    <button type="submit" class="registerbtn">Register</button>
+<div w3-include-html="nav.php"></div> 
+  <div class="header">
+  	<h2>Register</h2>
   </div>
-
-</form>
+	
+  <form method="post" action="http://localhost/ORAK/register/register.php">
+  	<?php include('errors.php'); ?>
+  	<div class="input-group">
+  	  <label>Username</label>
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	</div>
+  	<div class="input-group">
+  	  <label>Email</label>
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	</div>
+  	<div class="input-group">
+  	  <label>Password</label>
+  	  <input type="password" name="password_1">
+  	</div>
+  	<div class="input-group">
+  	  <label>Confirm password</label>
+  	  <input type="password" name="password_2">
+  	</div>
+  	<div class="input-group">
+  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	</div>
+  	<p>
+  		Already a member? <a href="http://localhost/ORAK/Home.php">Sign in</a>
+  	</p>
+  </form>
 </body>
 </html>
