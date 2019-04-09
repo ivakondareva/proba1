@@ -55,12 +55,13 @@ hr {
   text-align: center;
 }
 body {
-    background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
+    background-image: url("https://remote.co/wp-content/uploads/2018/05/Remote-Work-More-Than-a-Perk-for-Pros-with-Chronic-Conditions.jpg");
+
   height: 100%;
     max-width:100%;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-size:100%;
+  background-size: 100%;
+
 }
 body,html {
     height:100%;
@@ -72,38 +73,48 @@ h3 { font-family: Segoe; font-size: 14px; font-style: normal; font-variant: norm
 blockquote { font-family: Segoe; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; }
  pre { font-family: Segoe; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
 h1{
-    color: white;
+    color: black;
   font-size: 60px;
   font-style: italic;
+}
+#logo{
+  background:none;
 }
 #logo a{
     float:right;
     display:block;
     text-align:right;
     font-size:20px;
-    color: white;
+    color: black;
     text-decoration: none;
     display:none;
+    
 }
 #logo a:link{
     color: #FFF;
+}
+#logo .orak{
+  float:left;
+  display:block;
+  
 }
 .input-type{
     display:none;
 }
 ul {
-    border: 1px solid black;
     list-style-type: none;
-    margin: 0;
+    margin-top:10%;
+    background:none;
     padding: 0;
     overflow: hidden;
 }
 li{
+  
     float:right;
 }
 li a {
     display: block;
-    color: white;
+    
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -111,6 +122,7 @@ li a {
 li a:hover {
     background-color: #9999FF;
 }
+
 </style>
 <script>
         function includeHTML() {
@@ -145,7 +157,7 @@ li a:hover {
 <body>
 <div id="logo">
 <a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a>
-<input type="image" src="https://softuni.bg/companies/profile/logo/244"> 
+<input type="image" class="orak" src="https://softuni.bg/companies/profile/logo/244"> 
 <ul>
     
 <?php
@@ -192,6 +204,7 @@ else
         includeHTML();
     </script>
 </br>
+ 
 
 
 </body>
