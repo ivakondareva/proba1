@@ -7,13 +7,14 @@ body {
     font-family: Georgia, serif;
 }
 #logo {
-    padding: 10px;
+    padding: 5px;
   text-align: center;
-  background-image: url("https://cloud.addictivetips.com/wp-content/uploads/2017/10/The-Night-Sky-Above-Bassano-del-Grappa-Italy.jpg");
+  background-image: url("https://remote.co/wp-content/uploads/2018/05/Remote-Work-More-Than-a-Perk-for-Pros-with-Chronic-Conditions.jpg");
   background-size:100%;
-  color: white;
+  color: black;
   font-size: 30px;
-  font-style: italic;
+  font-style: italic; 
+
 }
 #logo a{
     float:right;
@@ -31,23 +32,27 @@ body {
     display:none;
 }
 ul {
-    border: 1px solid black;
+    
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiqeUFv-XPb1HXYqQZyEJ6N6ggPdB1XG1CkdyS1DG3gmPKCRnB");
-    background-size:100%;
+
+   
+
+	
 }
+
 li{
     float:left;
 }
 li a {
     display: block;
-    color: white;
+
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+
 }
 li a:hover {
     background-color: #9999FF;
@@ -88,7 +93,7 @@ li a:hover {
 <a href="http://localhost/ORAK/Home.php?logout='1'" >logout</a>
 <input type="image" src="https://softuni.bg/companies/profile/logo/244"> 
 <h1> Project for Dorothy </h1>
- </div>
+
 <ul>
     
 <?php
@@ -125,7 +130,7 @@ else
 }
 ?>
 </ul>
-
+</div>
 <script>
         includeHTML();
     </script>
