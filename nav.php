@@ -20,7 +20,7 @@ body {
     display:block;
     text-align:right;
     font-size:20px;
-    color: white;
+    color: black;
     text-decoration: none;
     display:none;
 }
