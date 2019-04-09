@@ -10,7 +10,7 @@
   padding: 16px;
 }
 #reg{
-  color:white;
+  color:black;
 }
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -162,10 +162,13 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
 {$user=$_SESSION['username'];
 echo
 "
-    <li><a href='PersonList.php?user=$user&isCandidate=NULL'>Person List</a></li>
-    <li><a href='AddCandidate.php?user=$user'>Add Candidate</a></li>
-    <li><a href='AddEmployee.php?user=$user'>Add Employee</a></li>
-    <li><a href='Search.php?user=$user'>Search</a></li>
+<li><a href='Search.php?user=$user'>Search</a></li>
+<li><a href='AddEmployee.php?user=$user'>Add Employee</a></li>
+<li><a href='AddCandidate.php?user=$user'>Add Candidate</a></li>
+<li><a href='PersonList.php?user=$user&isCandidate=NULL'>Person List</a></li>
+    
+    
+    
 ";
 ?>
 <style type="text/css">#logo a{
@@ -181,10 +184,13 @@ else
 {
     echo
     "
-    <li><a href='PersonList.php'>PersonList</a></li>
-    <li><a href='AddCandidate.php'>Add Candidate</a></li>
-    <li><a href='AddEmployee.php'>Add Employee</a></li>
     <li><a href='Search.php'>Search</a></li>
+    <li><a href='AddEmployee.php'>Add Employee</a></li>
+    <li><a href='AddCandidate.php'>Add Candidate</a></li>
+    <li><a href='PersonList.php'>PersonList</a></li>
+    
+    
+    
     ";
 }
 ?>
