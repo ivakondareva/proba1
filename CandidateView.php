@@ -109,7 +109,6 @@ if(isset($_REQUEST["id"]))
     $images = array("$Name".".jpg");
     $User= urldecode($_REQUEST["user"]);
     // Loop through array to create image gallery
-
     foreach($images as $image)
     {
         echo '<center>

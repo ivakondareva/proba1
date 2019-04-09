@@ -78,12 +78,12 @@ th {
 session_start();
 if(isset($_POST['candidatesBtn']))
 {
-    $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=1';
+    $userche='location:PersonList.php?user='.$_SESSION['username'].'&isCandidate=1';
     header($userche);
 }
 else if(isset($_POST['employeesBtn']))
 {
-      $userche='location:proba1.php?user='.$_SESSION['username'].'&isCandidate=0';
+      $userche='location:PersonList.php?user='.$_SESSION['username'].'&isCandidate=0';
       header($userche);
 }
 ?>
@@ -126,7 +126,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     }
     $j=0;
 	  "</br>";
-    echo "<form action='proba1.php' method='post'  class='btn-group' enctype='multipart/form-data'>
+    echo "<form action='PersonList.php' method='post'  class='btn-group' enctype='multipart/form-data'>
 	       <button type='submit' name='candidatesBtn'  class='button' > See Candidates </button>
 	       <button type='submit' name='employeesBtn' class='button' > See Employees </button>
 	       </form>";
@@ -155,14 +155,14 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
                     if($isCand==1)
                 	  {
                 		    $user=$_SESSION['username'];
-                		    echo "<a href='Candidate.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		    echo "<a href='CandidateView.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
                 		    </a>";
                 		    echo "</td>";
                 	  }
                 	  else
                 	  {
                 		    $user=$_SESSION['username'];
-                		    echo "<a href='Employee.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
+                		    echo "<a href='EmployeeView.php?user=$user&id=$temp' style='color: RGB(103,117,124)'> $tempname
                 		    </a>";
                 		    echo "</td>";
                 	  }
@@ -180,7 +180,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
     mysqli_close($conn);
 }
 else
-{s
+{
   	echo "<p>";
   	$bam="За да видите тази страница, моля, влезте в профила си!";
   	printf("%s",$bam);

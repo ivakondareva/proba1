@@ -14,7 +14,6 @@ body {
   color: black;
   font-size: 30px;
   font-style: italic; 
-
 }
 #logo a{
     float:right;
@@ -37,22 +36,17 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-
    
-
-	
+  
 }
-
 li{
     float:left;
 }
 li a {
     display: block;
-
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-
 }
 li a:hover {
     background-color: #9999FF;
@@ -103,9 +97,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
 echo
 "
     <li><a href='Home.php?user=$user'> Home </a></li>
-    <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
-    <li><a href='proba2.php?user=$user'>Add Candidate</a></li>
-    <li><a href='proba2.php?user=$user'>Add Employee</a></li>
+    <li><a href='PersonList.php?user=$user&isCandidate=NULL'>Person List</a></li>
+    <li><a href='AddCandidate.php?user=$user'>Add Candidate</a></li>
+    <li><a href='AddEmployee.php?user=$user'>Add Employee</a></li>
     <li><a href='Search.php?user=$user'>Search</a></li>
 ";
 ?>
@@ -123,8 +117,9 @@ else
     echo
     "
         <li><a href='Home.php'> Home </a></li>
-        <li><a href='proba1.php'>PersonList</a></li>
-        <li><a href='proba2.php'>EditPerson</a></li>
+        <li><a href='PersonList.php'>PersonList</a></li>
+        <li><a href='AddCandidate.php'>Add Candidate</a></li>
+        <li><a href='AddEmployee.php'>Add Employee</a></li>
         <li><a href='Search.php'>Search</a></li>
     ";
 }

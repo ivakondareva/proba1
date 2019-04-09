@@ -56,12 +56,10 @@ hr {
 }
 body {
     background-image: url("https://remote.co/wp-content/uploads/2018/05/Remote-Work-More-Than-a-Perk-for-Pros-with-Chronic-Conditions.jpg");
-
   height: 100%;
     max-width:100%;
   background-repeat: no-repeat;
-  background-size: 100%;
-
+  background-size: cover;
 }
 body,html {
     height:100%;
@@ -122,7 +120,6 @@ li a {
 li a:hover {
     background-color: #9999FF;
 }
-
 </style>
 <script>
         function includeHTML() {
@@ -165,9 +162,8 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
 {$user=$_SESSION['username'];
 echo
 "
-    <li><a href='Home.php?user=$user'> Home </a></li>
-    <li><a href='proba1.php?user=$user&isCandidate=NULL'>PersonList</a></li>
-    <li><a href='proba2.php?user=$user'>Add Candidate</a></li>
+    <li><a href='PersonList.php?user=$user&isCandidate=NULL'>Person List</a></li>
+    <li><a href='AddCandidate.php?user=$user'>Add Candidate</a></li>
     <li><a href='AddEmployee.php?user=$user'>Add Employee</a></li>
     <li><a href='Search.php?user=$user'>Search</a></li>
 ";
@@ -185,11 +181,10 @@ else
 {
     echo
     "
-        <li><a href='Home.php'> Home </a></li>
-        <li><a href='proba1.php'>PersonList</a></li>
-        <li><a href='proba2.php'>Add Candidate</a></li>
-        <li><a href='Search.php'>Search</a></li>
-        <li><a href='AddEmployee.php'>Add Employee</a></li>
+    <li><a href='PersonList.php'>PersonList</a></li>
+    <li><a href='AddCandidate.php'>Add Candidate</a></li>
+    <li><a href='AddEmployee.php'>Add Employee</a></li>
+    <li><a href='Search.php'>Search</a></li>
     ";
 }
 ?>

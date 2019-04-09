@@ -106,7 +106,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && $_SESSION['l
       $EmailTaken=$GLOBALS['InputEmail'];
       $PhoneTaken=$GLOBALS['InputPhone'];
       $SexTaken=$GLOBALS['InputSex'];  
-
       $DayTaken=(string)$GLOBALS['InputDay'];
       $MonthTaken=(string)$GLOBALS['InputMonth'];
       $YearTaken=(string)$GLOBALS['InputYear'];
